@@ -73,13 +73,13 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tax.UserModuleServices", "T
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tax.ModuleServices", "Tax.ModuleServices", "{C86191AE-E98F-46BB-B26C-2D7182558800}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tax.Server", "Tax.Server\Tax.Server.csproj", "{75ECDF60-A8B3-420F-A6A9-7AEAD4C355C7}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tax.IModuleServices", "Tax.IModuleServices", "{22B0C575-BAEF-450F-87B3-EB747B843312}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tax.CompanyModuleService", "Tax.CompanyModuleService\Tax.CompanyModuleService.csproj", "{0C41C9C9-A892-4B50-AFC9-42EB742592A6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tax.CompanyModuleService", "Tax.CompanyModuleService\Tax.CompanyModuleService.csproj", "{0C41C9C9-A892-4B50-AFC9-42EB742592A6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tax.ICompanyModuleService", "Tax.ICompanyModuleService\Tax.ICompanyModuleService.csproj", "{AF400C65-B82E-4A94-9EB6-F82522720506}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tax.ICompanyModuleService", "Tax.ICompanyModuleService\Tax.ICompanyModuleService.csproj", "{AF400C65-B82E-4A94-9EB6-F82522720506}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tax.Services.Server", "Tax.Server\Tax.Services.Server.csproj", "{943183AB-38F4-406A-93E0-F5459A195426}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -199,10 +199,6 @@ Global
 		{970395BC-B8C8-4ACC-93AD-72AAC0488E47}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{970395BC-B8C8-4ACC-93AD-72AAC0488E47}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{970395BC-B8C8-4ACC-93AD-72AAC0488E47}.Release|Any CPU.Build.0 = Release|Any CPU
-		{75ECDF60-A8B3-420F-A6A9-7AEAD4C355C7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{75ECDF60-A8B3-420F-A6A9-7AEAD4C355C7}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{75ECDF60-A8B3-420F-A6A9-7AEAD4C355C7}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{75ECDF60-A8B3-420F-A6A9-7AEAD4C355C7}.Release|Any CPU.Build.0 = Release|Any CPU
 		{0C41C9C9-A892-4B50-AFC9-42EB742592A6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{0C41C9C9-A892-4B50-AFC9-42EB742592A6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0C41C9C9-A892-4B50-AFC9-42EB742592A6}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -211,6 +207,10 @@ Global
 		{AF400C65-B82E-4A94-9EB6-F82522720506}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AF400C65-B82E-4A94-9EB6-F82522720506}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AF400C65-B82E-4A94-9EB6-F82522720506}.Release|Any CPU.Build.0 = Release|Any CPU
+		{943183AB-38F4-406A-93E0-F5459A195426}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{943183AB-38F4-406A-93E0-F5459A195426}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{943183AB-38F4-406A-93E0-F5459A195426}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{943183AB-38F4-406A-93E0-F5459A195426}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

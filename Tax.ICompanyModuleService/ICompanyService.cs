@@ -14,7 +14,7 @@ namespace Tax.ICompanyModuleService
     [ServiceBundle("api/{Service}")]
     public interface ICompanyService : IServiceKey
     {
-        [Command(Strategy = StrategyType.Injection, ShuntStrategy = AddressSelectorMode.HashAlgorithm, ExecutionTimeoutInMilliseconds = 2500, BreakerRequestVolumeThreshold = 3, Injection = @"return  new CompanyEntity();", RequestCacheEnabled = false)]
+        [Command(Strategy = StrategyType.Injection, ShuntStrategy = AddressSelectorMode.HashAlgorithm, ExecutionTimeoutInMilliseconds = 2500, BreakerRequestVolumeThreshold = 3, Injection = @"return  new TbCompany();", RequestCacheEnabled = false)]
         Task<TbCompany> GetCompany(int id);
     }
 }
