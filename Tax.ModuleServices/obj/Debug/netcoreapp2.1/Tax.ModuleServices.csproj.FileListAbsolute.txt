@@ -1,0 +1,8 @@
+E:\WB\Tax\Tax.ModuleServices\bin\Debug\netcoreapp2.1\Tax.ModuleServices.deps.json
+E:\WB\Tax\Tax.ModuleServices\bin\Debug\netcoreapp2.1\Tax.ModuleServices.dll
+E:\WB\Tax\Tax.ModuleServices\bin\Debug\netcoreapp2.1\Tax.ModuleServices.pdb
+E:\WB\Tax\Tax.ModuleServices\obj\Debug\netcoreapp2.1\Tax.ModuleServices.csproj.CoreCompileInputs.cache
+E:\WB\Tax\Tax.ModuleServices\obj\Debug\netcoreapp2.1\Tax.ModuleServices.AssemblyInfoInputs.cache
+E:\WB\Tax\Tax.ModuleServices\obj\Debug\netcoreapp2.1\Tax.ModuleServices.AssemblyInfo.cs
+E:\WB\Tax\Tax.ModuleServices\obj\Debug\netcoreapp2.1\Tax.ModuleServices.dll
+E:\WB\Tax\Tax.ModuleServices\obj\Debug\netcoreapp2.1\Tax.ModuleServices.pdb

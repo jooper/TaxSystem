@@ -1,0 +1,17 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Domain\BaseModel\Models\新文件夹\**" />
+    <EmbeddedResource Remove="Domain\BaseModel\Models\新文件夹\**" />
+    <None Remove="Domain\BaseModel\Models\新文件夹\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="F:\Expression\surging\src\Surging.Core\Surging.Core.System\Surging.Core.System.csproj" />
+  </ItemGroup>
+
+</Project>

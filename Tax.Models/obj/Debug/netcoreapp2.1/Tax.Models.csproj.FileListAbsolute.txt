@@ -1,0 +1,9 @@
+E:\WB\Tax\Tax.Models\bin\Debug\netcoreapp2.1\Tax.Models.deps.json
+E:\WB\Tax\Tax.Models\bin\Debug\netcoreapp2.1\Tax.Models.dll
+E:\WB\Tax\Tax.Models\bin\Debug\netcoreapp2.1\Tax.Models.pdb
+E:\WB\Tax\Tax.Models\obj\Debug\netcoreapp2.1\Tax.Models.csprojResolveAssemblyReference.cache
+E:\WB\Tax\Tax.Models\obj\Debug\netcoreapp2.1\Tax.Models.csproj.CoreCompileInputs.cache
+E:\WB\Tax\Tax.Models\obj\Debug\netcoreapp2.1\Tax.Models.AssemblyInfoInputs.cache
+E:\WB\Tax\Tax.Models\obj\Debug\netcoreapp2.1\Tax.Models.AssemblyInfo.cs
+E:\WB\Tax\Tax.Models\obj\Debug\netcoreapp2.1\Tax.Models.dll
+E:\WB\Tax\Tax.Models\obj\Debug\netcoreapp2.1\Tax.Models.pdb
