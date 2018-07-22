@@ -85,10 +85,16 @@ namespace Tax.CompanyModuleService.UnitOfWork
         private static readonly string DefaultSqlConnectionString =
             @"Data Source=192.168.200.200.;Initial Catalog=TestSur;User ID=sa;Password=123456aA;";
 
-        DbContextOptions options=new DbContextOptions<DbContext>{};
-        
+//        private DbContextOptions options = new DbContextOptionsBuilder().UseSqlite(DefaultSqlConnectionString).Options;
 
-        public EFDbContext(DbContextOptions dbContextOptions) : base(dbContextOptions)
+
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            optionsBuilder.UseSqlite(DefaultSqlConnectionString);
+            base.OnConfiguring(optionsBuilder);
+        }
+
+        public EFDbContext()
         {
         }
 
