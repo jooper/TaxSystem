@@ -1,7 +1,7 @@
 {
   "runtimeTarget": {
     "name": ".NETCoreApp,Version=v2.1",
-    "signature": "1b6f6af0369edc6769b307eb8f0442a9947e75f4"
+    "signature": "71f02bd61690421c54cd9f1c77aaff1b161ea39d"
   },
   "compilationOptions": {},
   "targets": {
@@ -9,7 +9,6 @@
       "Tax.Services.Server/1.0.0": {
         "dependencies": {
           "Autofac": "4.8.1",
-          "EntityFramework": "6.2.0",
           "Microsoft.Extensions.Configuration": "2.0.0",
           "Microsoft.Extensions.DependencyInjection": "2.0.0",
           "Microsoft.Extensions.Logging": "2.0.0",
@@ -189,18 +188,6 @@
           "lib/netstandard1.3/DotNetty.Transport.dll": {
             "assemblyVersion": "0.4.8.0",
             "fileVersion": "0.4.8.0"
-          }
-        }
-      },
-      "EntityFramework/6.2.0": {
-        "runtime": {
-          "lib/net45/EntityFramework.SqlServer.dll": {
-            "assemblyVersion": "6.0.0.0",
-            "fileVersion": "6.2.61023.0"
-          },
-          "lib/net45/EntityFramework.dll": {
-            "assemblyVersion": "6.0.0.0",
-            "fileVersion": "6.2.61023.0"
           }
         }
       },
@@ -2424,13 +2411,6 @@
       "sha512": "sha512-WLoDUZTDK5ESkMTtFmHflnH8T5OxDmQ+BPrELHiQN+jfYw1Uu1a1i9GkdqoRogs8/KzvUi2dEIYAQd/YP/NYug==",
       "path": "dotnetty.transport/0.4.8",
       "hashPath": "dotnetty.transport.0.4.8.nupkg.sha512"
-    },
-    "EntityFramework/6.2.0": {
-      "type": "package",
-      "serviceable": true,
-      "sha512": "sha512-ptGyXOf26qLrtn+2doAmylIlCxOnBJANwlyyLrXDmqIk9O18IzLWHyxDwwAyhgXkxmbiaA0WNpRy67WRReInBw==",
-      "path": "entityframework/6.2.0",
-      "hashPath": "entityframework.6.2.0.nupkg.sha512"
     },
     "librdkafka.redist/0.11.3": {
       "type": "package",

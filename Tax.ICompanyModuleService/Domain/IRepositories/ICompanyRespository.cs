@@ -1,4 +1,5 @@
-﻿using Tax.ICompanyModuleService.Domain.BaseModel.Models;
+﻿using System.Threading.Tasks;
+using Tax.ICompanyModuleService.Domain.BaseModel.Models;
 
 namespace Tax.ICompanyModuleService.Domain.IRepositories
 {
@@ -7,6 +8,6 @@ namespace Tax.ICompanyModuleService.Domain.IRepositories
     /// </summary>
     public interface ICompanyRespository:IRepository<TbCompany>
     {
-        
+        Task<string> GetCompanyNmae();
     }
 }

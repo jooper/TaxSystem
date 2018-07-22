@@ -1,5 +1,6 @@
-﻿using System;
-using System.Data.Entity;
+﻿using Microsoft.EntityFrameworkCore;
+using System;
+//using System.Data.Entity;
 using Tax.ICompanyModuleService.Domain.BaseModel;
 using Tax.ICompanyModuleService.Domain.BaseModel.Models;
 
@@ -39,9 +40,7 @@ namespace Tax.CompanyModuleService.UnitOfWork
             IsCommitted = false;
         }
 
-
         //unitOfWork
-
         public bool IsCommitted { get; set; }
 
         public int Commit()
@@ -86,7 +85,10 @@ namespace Tax.CompanyModuleService.UnitOfWork
         private static readonly string DefaultSqlConnectionString =
             @"Data Source=192.168.200.200.;Initial Catalog=TestSur;User ID=sa;Password=123456aA;";
 
-        public EFDbContext() : base(DefaultSqlConnectionString)
+        DbContextOptions options=new DbContextOptions<DbContext>{};
+        
+
+        public EFDbContext(DbContextOptions dbContextOptions) : base(dbContextOptions)
         {
         }
 

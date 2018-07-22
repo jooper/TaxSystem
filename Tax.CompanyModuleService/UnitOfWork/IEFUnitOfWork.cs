@@ -1,4 +1,4 @@
-﻿using System.Data.Entity;
+﻿using Microsoft.EntityFrameworkCore;
 using Tax.ICompanyModuleService.Domain.IRepositories;
 
 namespace Tax.CompanyModuleService.UnitOfWork
