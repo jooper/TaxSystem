@@ -51,3 +51,7 @@ E:\WB\Tax\Tax.Server\obj\Debug\netcoreapp2.1\Tax.Services.Server.AssemblyInfoInp
 E:\WB\Tax\Tax.Server\obj\Debug\netcoreapp2.1\Tax.Services.Server.AssemblyInfo.cs
 E:\WB\Tax\Tax.Server\obj\Debug\netcoreapp2.1\Tax.Services.Server.dll
 E:\WB\Tax\Tax.Server\obj\Debug\netcoreapp2.1\Tax.Services.Server.pdb
+E:\WB\Tax\Tax.Server\bin\Debug\netcoreapp2.1\Tax.CompanyModuleService.dll
+E:\WB\Tax\Tax.Server\bin\Debug\netcoreapp2.1\Tax.ICompanyModuleService.dll
+E:\WB\Tax\Tax.Server\bin\Debug\netcoreapp2.1\Tax.CompanyModuleService.pdb
+E:\WB\Tax\Tax.Server\bin\Debug\netcoreapp2.1\Tax.ICompanyModuleService.pdb

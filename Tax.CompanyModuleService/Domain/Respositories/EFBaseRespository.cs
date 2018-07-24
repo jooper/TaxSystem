@@ -4,7 +4,7 @@ using Tax.CompanyModuleService.UnitOfWork;
 using Tax.ICompanyModuleService.Domain.BaseModel;
 using Tax.ICompanyModuleService.Domain.IRepositories;
 
-namespace Tax.CompanyModuleService.Respositories
+namespace Tax.CompanyModuleService.Domain.Respositories
 {
     public class EFBaseRespository<TEntity> : IRepository<TEntity>
         where TEntity : AggregateRoot
