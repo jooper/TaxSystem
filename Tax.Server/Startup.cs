@@ -12,7 +12,7 @@ namespace Tax.Services.Server
     {
         public Startup(IConfigurationBuilder config)
         {
-            ConfigureEventBus(config);
+//            ConfigureEventBus(config);
             ConfigureCache(config);
         }
 

@@ -1,5 +1,8 @@
-﻿namespace Tax.ICompanyModuleService.Domain.BaseModel.Models
+﻿using ProtoBuf;
+
+namespace Tax.ICompanyModuleService.Domain.BaseModel.Models
 {
+    [ProtoContract]
     public class TbRight:IEntity
     {
         

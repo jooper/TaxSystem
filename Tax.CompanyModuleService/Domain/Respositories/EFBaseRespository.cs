@@ -10,12 +10,7 @@ namespace Tax.CompanyModuleService.Domain.Respositories
     public class EfBaseRespository<TEntity> : BaseRepository, IRepository<TEntity>
         where TEntity : AggregateRoot
     {
-        public EfUnitOfWork UnitOfWork { set; get; }
-
-        public EfBaseRespository(EfUnitOfWork work)
-        {
-            UnitOfWork = work;
-        }
+        public EfUnitOfWork UnitOfWork=new EfUnitOfWork();
 
         public IQueryable<TEntity> Entities => UnitOfWork.Context.Set<TEntity>();
 

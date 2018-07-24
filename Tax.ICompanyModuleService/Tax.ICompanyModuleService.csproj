@@ -11,6 +11,11 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="MessagePack" Version="1.7.3.4" />
+    <PackageReference Include="protobuf-net" Version="2.3.5" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="F:\Expression\surging\src\Surging.Core\Surging.Core.System\Surging.Core.System.csproj" />
   </ItemGroup>
 

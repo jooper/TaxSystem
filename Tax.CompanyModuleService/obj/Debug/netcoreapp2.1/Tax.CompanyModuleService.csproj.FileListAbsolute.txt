@@ -1,3 +1,7 @@
+E:\WB\Tax\Tax.CompanyModuleService\obj\Debug\netcoreapp2.1\Tax.CompanyModuleService.csprojResolveAssemblyReference.cache
+E:\WB\Tax\Tax.CompanyModuleService\obj\Debug\netcoreapp2.1\Tax.CompanyModuleService.csproj.CoreCompileInputs.cache
+E:\WB\Tax\Tax.CompanyModuleService\obj\Debug\netcoreapp2.1\Tax.CompanyModuleService.AssemblyInfoInputs.cache
+E:\WB\Tax\Tax.CompanyModuleService\obj\Debug\netcoreapp2.1\Tax.CompanyModuleService.AssemblyInfo.cs
 E:\WB\Tax\Tax.CompanyModuleService\bin\Debug\netcoreapp2.1\Tax.CompanyModuleService.deps.json
 E:\WB\Tax\Tax.CompanyModuleService\bin\Debug\netcoreapp2.1\Tax.CompanyModuleService.dll
 E:\WB\Tax\Tax.CompanyModuleService\bin\Debug\netcoreapp2.1\Tax.CompanyModuleService.pdb
@@ -15,9 +19,5 @@ E:\WB\Tax\Tax.CompanyModuleService\bin\Debug\netcoreapp2.1\Surging.Core.Caching.
 E:\WB\Tax\Tax.CompanyModuleService\bin\Debug\netcoreapp2.1\Surging.Core.Common.pdb
 E:\WB\Tax\Tax.CompanyModuleService\bin\Debug\netcoreapp2.1\Surging.Core.ServiceHosting.pdb
 E:\WB\Tax\Tax.CompanyModuleService\bin\Debug\netcoreapp2.1\Surging.Core.System.pdb
-E:\WB\Tax\Tax.CompanyModuleService\obj\Debug\netcoreapp2.1\Tax.CompanyModuleService.csprojResolveAssemblyReference.cache
-E:\WB\Tax\Tax.CompanyModuleService\obj\Debug\netcoreapp2.1\Tax.CompanyModuleService.csproj.CoreCompileInputs.cache
-E:\WB\Tax\Tax.CompanyModuleService\obj\Debug\netcoreapp2.1\Tax.CompanyModuleService.AssemblyInfoInputs.cache
-E:\WB\Tax\Tax.CompanyModuleService\obj\Debug\netcoreapp2.1\Tax.CompanyModuleService.AssemblyInfo.cs
 E:\WB\Tax\Tax.CompanyModuleService\obj\Debug\netcoreapp2.1\Tax.CompanyModuleService.dll
 E:\WB\Tax\Tax.CompanyModuleService\obj\Debug\netcoreapp2.1\Tax.CompanyModuleService.pdb

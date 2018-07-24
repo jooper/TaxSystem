@@ -1,3 +1,7 @@
+E:\WB\Tax\Tax.Server\obj\Debug\netcoreapp2.1\Tax.Services.Server.csprojResolveAssemblyReference.cache
+E:\WB\Tax\Tax.Server\obj\Debug\netcoreapp2.1\Tax.Services.Server.csproj.CoreCompileInputs.cache
+E:\WB\Tax\Tax.Server\obj\Debug\netcoreapp2.1\Tax.Services.Server.AssemblyInfoInputs.cache
+E:\WB\Tax\Tax.Server\obj\Debug\netcoreapp2.1\Tax.Services.Server.AssemblyInfo.cs
 E:\WB\Tax\Tax.Server\bin\Debug\netcoreapp2.1\cacheSettings.json
 E:\WB\Tax\Tax.Server\bin\Debug\netcoreapp2.1\Configs\consul.json
 E:\WB\Tax\Tax.Server\bin\Debug\netcoreapp2.1\eventBusSettings.json
@@ -26,7 +30,11 @@ E:\WB\Tax\Tax.Server\bin\Debug\netcoreapp2.1\Surging.Core.ProxyGenerator.dll
 E:\WB\Tax\Tax.Server\bin\Debug\netcoreapp2.1\Surging.Core.ServiceHosting.dll
 E:\WB\Tax\Tax.Server\bin\Debug\netcoreapp2.1\Surging.Core.System.dll
 E:\WB\Tax\Tax.Server\bin\Debug\netcoreapp2.1\Surging.Core.Zookeeper.dll
+E:\WB\Tax\Tax.Server\bin\Debug\netcoreapp2.1\Tax.CompanyModuleService.dll
+E:\WB\Tax\Tax.Server\bin\Debug\netcoreapp2.1\Tax.ICompanyModuleService.dll
 E:\WB\Tax\Tax.Server\bin\Debug\netcoreapp2.1\WebSocketCore.dll
+E:\WB\Tax\Tax.Server\bin\Debug\netcoreapp2.1\Tax.CompanyModuleService.pdb
+E:\WB\Tax\Tax.Server\bin\Debug\netcoreapp2.1\Tax.ICompanyModuleService.pdb
 E:\WB\Tax\Tax.Server\bin\Debug\netcoreapp2.1\Surging.Core.Caching.pdb
 E:\WB\Tax\Tax.Server\bin\Debug\netcoreapp2.1\Surging.Core.Codec.MessagePack.pdb
 E:\WB\Tax\Tax.Server\bin\Debug\netcoreapp2.1\Surging.Core.Codec.ProtoBuffer.pdb
@@ -45,13 +53,5 @@ E:\WB\Tax\Tax.Server\bin\Debug\netcoreapp2.1\Surging.Core.ServiceHosting.pdb
 E:\WB\Tax\Tax.Server\bin\Debug\netcoreapp2.1\Surging.Core.System.pdb
 E:\WB\Tax\Tax.Server\bin\Debug\netcoreapp2.1\Surging.Core.Zookeeper.pdb
 E:\WB\Tax\Tax.Server\bin\Debug\netcoreapp2.1\WebSocketCore.pdb
-E:\WB\Tax\Tax.Server\obj\Debug\netcoreapp2.1\Tax.Services.Server.csprojResolveAssemblyReference.cache
-E:\WB\Tax\Tax.Server\obj\Debug\netcoreapp2.1\Tax.Services.Server.csproj.CoreCompileInputs.cache
-E:\WB\Tax\Tax.Server\obj\Debug\netcoreapp2.1\Tax.Services.Server.AssemblyInfoInputs.cache
-E:\WB\Tax\Tax.Server\obj\Debug\netcoreapp2.1\Tax.Services.Server.AssemblyInfo.cs
 E:\WB\Tax\Tax.Server\obj\Debug\netcoreapp2.1\Tax.Services.Server.dll
 E:\WB\Tax\Tax.Server\obj\Debug\netcoreapp2.1\Tax.Services.Server.pdb
-E:\WB\Tax\Tax.Server\bin\Debug\netcoreapp2.1\Tax.CompanyModuleService.dll
-E:\WB\Tax\Tax.Server\bin\Debug\netcoreapp2.1\Tax.ICompanyModuleService.dll
-E:\WB\Tax\Tax.Server\bin\Debug\netcoreapp2.1\Tax.CompanyModuleService.pdb
-E:\WB\Tax\Tax.Server\bin\Debug\netcoreapp2.1\Tax.ICompanyModuleService.pdb

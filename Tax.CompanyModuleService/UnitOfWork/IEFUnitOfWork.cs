@@ -4,7 +4,7 @@ using Tax.ICompanyModuleService.Domain.IRepositories;
 
 namespace Tax.CompanyModuleService.UnitOfWork
 {
-    public interface IEfUnitOfWork : IUnitOfWorkRespositoryContext
+    public interface IEfUnitOfWork : IUnitOfWorkRespositoryContext,IServiceKey
     {
         DbContext Context { get; }
     }
