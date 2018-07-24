@@ -1,4 +1,6 @@
 ﻿using System;
+using Surging.Core.CPlatform.EventBus.Events;
+using Surging.Core.CPlatform.Ioc;
 using Tax.ICompanyModuleService.Domain.BaseModel;
 
 namespace Tax.ICompanyModuleService.Domain.IRepositories
@@ -14,14 +16,12 @@ namespace Tax.ICompanyModuleService.Domain.IRepositories
         void RegisterNew<TEntiy>(TEntiy entity) where TEntiy : AggregateRoot;
 
 
-
         /// <summary>
         /// 将聚合根的状态标记为修改，但EF上下文此时并未提交
         /// </summary>
         /// <typeparam name="TEntiy"></typeparam>
         /// <param name="entity"></param>
         void RegisterModified<TEntiy>(TEntiy entity) where TEntiy : AggregateRoot;
-
 
 
         /// <summary>

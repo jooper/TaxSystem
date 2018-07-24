@@ -10,8 +10,17 @@ namespace Tax.CompanyModuleService.Domain.Respositories
     public class EFBaseRespository<TEntity> : BaseRepository, IRepository<TEntity>
         where TEntity : AggregateRoot
     {
-        public IEFUnitOfWork UnitOfWork { set; get; }
+        public EFUnitOfWork UnitOfWork { set; get; }
 
+        public EFBaseRespository(EFUnitOfWork work)
+        {
+            UnitOfWork = work;
+        }
+
+
+        public EFBaseRespository()
+        {
+        }
 
         public IQueryable<TEntity> Entities => UnitOfWork.Context.Set<TEntity>();
 
@@ -38,7 +47,7 @@ namespace Tax.CompanyModuleService.Domain.Respositories
                 UnitOfWork.RegisterDeleted(entity);
             }
 
-           return UnitOfWork.Commit();
+            return UnitOfWork.Commit();
         }
 
         public TEntity GetByKey(object key)

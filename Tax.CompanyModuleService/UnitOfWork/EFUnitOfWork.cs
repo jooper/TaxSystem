@@ -1,12 +1,13 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using System;
+using Surging.Core.CPlatform.Ioc;
 //using System.Data.Entity;
 using Tax.ICompanyModuleService.Domain.BaseModel;
 using Tax.ICompanyModuleService.Domain.BaseModel.Models;
 
 namespace Tax.CompanyModuleService.UnitOfWork
 {
-    public class EFUnitOfWork : IEFUnitOfWork
+    public class EFUnitOfWork: IEFUnitOfWork
     {
         public DbContext Context => new EFDbContext();
 
