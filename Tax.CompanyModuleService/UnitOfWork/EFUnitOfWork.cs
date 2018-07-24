@@ -6,7 +6,7 @@ using Tax.ICompanyModuleService.Domain.BaseModel;
 
 namespace Tax.CompanyModuleService.UnitOfWork
 {
-    public class EfUnitOfWork: IEFUnitOfWork
+    public class EfUnitOfWork: IEfUnitOfWork
     {
         public DbContext Context => new EfDbContext();
 
