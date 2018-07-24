@@ -7,19 +7,14 @@ using Tax.ICompanyModuleService.Domain.IRepositories;
 
 namespace Tax.CompanyModuleService.Domain.Respositories
 {
-    public class EFBaseRespository<TEntity> : BaseRepository, IRepository<TEntity>
+    public class EfBaseRespository<TEntity> : BaseRepository, IRepository<TEntity>
         where TEntity : AggregateRoot
     {
-        public EFUnitOfWork UnitOfWork { set; get; }
+        public EfUnitOfWork UnitOfWork { set; get; }
 
-        public EFBaseRespository(EFUnitOfWork work)
+        public EfBaseRespository(EfUnitOfWork work)
         {
             UnitOfWork = work;
-        }
-
-
-        public EFBaseRespository()
-        {
         }
 
         public IQueryable<TEntity> Entities => UnitOfWork.Context.Set<TEntity>();

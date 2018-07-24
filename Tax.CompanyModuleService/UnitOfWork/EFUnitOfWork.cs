@@ -3,14 +3,12 @@ using System;
 using Surging.Core.CPlatform.Ioc;
 //using System.Data.Entity;
 using Tax.ICompanyModuleService.Domain.BaseModel;
-using Tax.ICompanyModuleService.Domain.BaseModel.Models;
 
 namespace Tax.CompanyModuleService.UnitOfWork
 {
-    public class EFUnitOfWork: IEFUnitOfWork
+    public class EfUnitOfWork: IEFUnitOfWork
     {
-        public DbContext Context => new EFDbContext();
-
+        public DbContext Context => new EfDbContext();
 
         public void RegisterNew<TEntiy>(TEntiy entity) where TEntiy : AggregateRoot
         {
@@ -78,31 +76,5 @@ namespace Tax.CompanyModuleService.UnitOfWork
 
             Context.Dispose();
         }
-    }
-
-
-    class EFDbContext : DbContext
-    {
-        private static readonly string DefaultSqlConnectionString =
-            @"Data Source=192.168.200.200.;Initial Catalog=TestSur;User ID=sa;Password=123456aA;";
-
-//        private DbContextOptions options = new DbContextOptionsBuilder().UseSqlite(DefaultSqlConnectionString).Options;
-
-
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            optionsBuilder.UseSqlite(DefaultSqlConnectionString);
-            base.OnConfiguring(optionsBuilder);
-        }
-
-        public EFDbContext()
-        {
-        }
-
-        public DbSet<TbCompany> TB_COMPANY { set; get; }
-        public DbSet<TbRole> TB_ROLE { set; get; }
-        public DbSet<TbRight> TB_RIGHT { set; get; }
-        public DbSet<TbUserrole> TB_USERROLE { set; get; }
-        public DbSet<TbUser> TB_USER { set; get; }
     }
 }
