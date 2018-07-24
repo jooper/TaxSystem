@@ -5,7 +5,7 @@ using Tax.ICompanyModuleService.Domain.IRepositories;
 
 namespace Tax.CompanyModuleService.Domain.Respositories
 {
-    public class CompanyRespository : EFBaseRespository<TbCompany>,  ICompanyRespository
+    public class CompanyRespository : EfBaseRespository<TbCompany>,  ICompanyRespository
     {
         public Task<string> GetCompanyNmae()
         {

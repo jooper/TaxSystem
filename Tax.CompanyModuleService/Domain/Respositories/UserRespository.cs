@@ -3,7 +3,7 @@ using Tax.ICompanyModuleService.Domain.IRepositories;
 
 namespace Tax.CompanyModuleService.Domain.Respositories
 {
-    public class UserRespository:EFBaseRespository<TbUser>,IUserRespository
+    public class UserRespository:EfBaseRespository<TbUser>,IUserRespository
     {
         
     }
