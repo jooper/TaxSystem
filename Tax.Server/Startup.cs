@@ -6,7 +6,7 @@ using Surging.Core.Caching.Configurations;
 using Surging.Core.CPlatform.Utilities;
 using Surging.Core.EventBusRabbitMQ.Configurations;
 
-namespace Surging.Services.Server
+namespace Tax.Services.Server
 {
     public class Startup
     {
@@ -37,7 +37,7 @@ namespace Surging.Services.Server
         /// <param name="services"></param>
         private void ConfigureLogging(IServiceCollection services)
         {
-           // services.AddLogging();
+            services.AddLogging();
         }
 
         private static void ConfigureEventBus(IConfigurationBuilder build)

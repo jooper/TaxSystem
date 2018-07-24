@@ -1,12 +1,13 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using Surging.Core.CPlatform.Ioc;
 using Tax.CompanyModuleService.UnitOfWork;
 using Tax.ICompanyModuleService.Domain.BaseModel;
 using Tax.ICompanyModuleService.Domain.IRepositories;
 
 namespace Tax.CompanyModuleService.Domain.Respositories
 {
-    public class EFBaseRespository<TEntity> : IRepository<TEntity>
+    public class EFBaseRespository<TEntity> : BaseRepository, IRepository<TEntity>
         where TEntity : AggregateRoot
     {
         public IEFUnitOfWork UnitOfWork { set; get; }
