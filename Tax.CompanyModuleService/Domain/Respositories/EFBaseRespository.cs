@@ -10,7 +10,7 @@ namespace Tax.CompanyModuleService.Domain.Respositories
     public class EfBaseRespository<TEntity> : BaseRepository, IRepository<TEntity>
         where TEntity : AggregateRoot
     {
-        private readonly EfUnitOfWork _unitOfWork=new EfUnitOfWork();
+        private readonly EfUnitOfWork _unitOfWork = new EfUnitOfWork();
 
         public IQueryable<TEntity> Entities => _unitOfWork.Context.Set<TEntity>();
 
@@ -40,6 +40,17 @@ namespace Tax.CompanyModuleService.Domain.Respositories
             return _unitOfWork.Commit();
         }
 
+        public bool Exist(TEntity ent)
+        {
+            return _unitOfWork.Context.Set<TEntity>().Contains(ent);
+        }
+
+        public bool Exist(object key)
+        {
+            var ent = GetByKey(key);
+            return ent != null;
+        }
+
         public TEntity GetByKey(object key)
         {
             return _unitOfWork.Context.Set<TEntity>().Find(key);
@@ -47,6 +58,8 @@ namespace Tax.CompanyModuleService.Domain.Respositories
 
         public int Insert(TEntity entity)
         {
+            if (Exist(entity))
+                return 0;
             _unitOfWork.RegisterNew(entity);
             return _unitOfWork.Commit();
         }
@@ -55,7 +68,8 @@ namespace Tax.CompanyModuleService.Domain.Respositories
         {
             foreach (var entity in entities)
             {
-                _unitOfWork.RegisterNew(entity);
+                if (!Exist(entity))
+                    _unitOfWork.RegisterNew(entity);
             }
 
             return _unitOfWork.Commit();

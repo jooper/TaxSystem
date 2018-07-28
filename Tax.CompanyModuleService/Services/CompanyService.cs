@@ -25,8 +25,8 @@ namespace Tax.CompanyModuleService.Services
         public Task<int> AddCompnay(DCompany company)
         {
             var entityCompany = new TbCompany {Id = company.Id, Addr = company.Name, Name = company.Name};
-//            _repository.Insert(entityCompany);
-            return Task.FromResult(1);
+            var result = _repository.Insert(entityCompany);
+            return Task.FromResult(result);
         }
 
         public Task UpdateCompany(DCompany company)

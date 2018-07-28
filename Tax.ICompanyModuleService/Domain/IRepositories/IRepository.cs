@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Tax.ICompanyModuleService.Domain.BaseModel;
 
@@ -20,5 +21,7 @@ namespace Tax.ICompanyModuleService.Domain.IRepositories
         int Delete(IEnumerable<TEntiy> entities);
         int Update(TEntiy entity);
         TEntiy GetByKey(object key);
+        bool Exist(object key);
+        bool Exist(TEntiy ent);
     }
 }
