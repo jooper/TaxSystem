@@ -14,7 +14,12 @@ namespace Tax.CompanyModuleService.UnitOfWork
         public void RegisterNew<TEntiy>(TEntiy entity) where TEntiy : AggregateRoot
         {
             var state = Context.Entry(entity).State;
-            if (state == EntityState.Detached) Context.Entry(entity).State = EntityState.Added;
+            if (state == EntityState.Detached)
+            {
+                Context.Entry(entity).CurrentValues.SetValues(entity);
+                Context.Entry(entity).State = EntityState.Added;
+            }
+
 
             //
             //           var  efContext = Context as EfDbContext;
