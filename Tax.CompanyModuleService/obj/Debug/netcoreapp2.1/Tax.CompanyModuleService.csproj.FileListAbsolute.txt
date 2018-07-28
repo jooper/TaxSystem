@@ -21,3 +21,5 @@ E:\WB\Tax\Tax.CompanyModuleService\bin\Debug\netcoreapp2.1\Surging.Core.ServiceH
 E:\WB\Tax\Tax.CompanyModuleService\bin\Debug\netcoreapp2.1\Surging.Core.System.pdb
 E:\WB\Tax\Tax.CompanyModuleService\obj\Debug\netcoreapp2.1\Tax.CompanyModuleService.dll
 E:\WB\Tax\Tax.CompanyModuleService\obj\Debug\netcoreapp2.1\Tax.CompanyModuleService.pdb
+E:\WB\Tax\Tax.CompanyModuleService\bin\Debug\netcoreapp2.1\Tax.CompanyModuleService.runtimeconfig.json
+E:\WB\Tax\Tax.CompanyModuleService\bin\Debug\netcoreapp2.1\Tax.CompanyModuleService.runtimeconfig.dev.json

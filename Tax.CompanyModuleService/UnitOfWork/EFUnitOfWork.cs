@@ -1,22 +1,35 @@
-﻿using Microsoft.EntityFrameworkCore;
-using System;
-using Surging.Core.CPlatform.Ioc;
-//using System.Data.Entity;
+﻿using System;
+using Microsoft.EntityFrameworkCore;
 using Tax.ICompanyModuleService.Domain.BaseModel;
 
 namespace Tax.CompanyModuleService.UnitOfWork
 {
-    public class EfUnitOfWork: IEfUnitOfWork
+    public class EfUnitOfWork : IEfUnitOfWork
     {
-        public DbContext Context => new EfDbContext();
+        public EfDbContext EfDbContextContext = new EfDbContext();
+
+        public DbContext Context => EfDbContextContext;
+
 
         public void RegisterNew<TEntiy>(TEntiy entity) where TEntiy : AggregateRoot
         {
             var state = Context.Entry(entity).State;
-            if (state == EntityState.Detached)
-            {
-                Context.Entry(entity).State = EntityState.Added;
-            }
+            if (state == EntityState.Detached) Context.Entry(entity).State = EntityState.Added;
+
+            //
+            //           var  efContext = Context as EfDbContext;
+            //            state = efContext.Entry(entity).State;
+            //            if (state == EntityState.Detached)
+            //            {
+            //                efContext.Entry(entity).State = EntityState.Added;
+            //            }
+            //
+            //            efContext.SaveChanges();
+            //            //            var ddd = Context as EfDbContext;//
+            //            ////            var dbSet = Context.Set<TEntiy>();
+            //            ////            ddd.TbCompany.Add(entity as TbCompany);
+            //            //            ddd.SaveChanges();
+
 
             IsCommitted = false;
         }
@@ -24,12 +37,10 @@ namespace Tax.CompanyModuleService.UnitOfWork
         public void RegisterModified<TEntiy>(TEntiy entity) where TEntiy : AggregateRoot
         {
             var state = Context.Entry(entity).State;
-            if (state == EntityState.Detached)
-            {
-                Context.Set<TEntiy>().Attach(entity);
-            }
-
+            if (state == EntityState.Detached) Context.Set<TEntiy>().Attach(entity);
+            Context.Attach(entity);
             Context.Entry(entity).State = EntityState.Modified;
+
             IsCommitted = false;
         }
 
@@ -45,10 +56,7 @@ namespace Tax.CompanyModuleService.UnitOfWork
         public int Commit()
         {
             //已提交则返回，未提交执行提交
-            if (IsCommitted)
-            {
-                return 0;
-            }
+            if (IsCommitted) return 0;
 
             try
             {
@@ -69,10 +77,7 @@ namespace Tax.CompanyModuleService.UnitOfWork
 
         public void Dispose()
         {
-            if (!IsCommitted)
-            {
-                Commit();
-            }
+            if (!IsCommitted) Commit();
 
             Context.Dispose();
         }

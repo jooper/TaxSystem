@@ -10,61 +10,61 @@ namespace Tax.CompanyModuleService.Domain.Respositories
     public class EfBaseRespository<TEntity> : BaseRepository, IRepository<TEntity>
         where TEntity : AggregateRoot
     {
-        public EfUnitOfWork UnitOfWork=new EfUnitOfWork();
+        private readonly EfUnitOfWork _unitOfWork=new EfUnitOfWork();
 
-        public IQueryable<TEntity> Entities => UnitOfWork.Context.Set<TEntity>();
+        public IQueryable<TEntity> Entities => _unitOfWork.Context.Set<TEntity>();
 
         public int Delete(object id)
         {
-            var entity = UnitOfWork.Context.Set<TEntity>().Find(id);
+            var entity = _unitOfWork.Context.Set<TEntity>().Find(id);
             if (entity == null)
                 return 0;
 
-            UnitOfWork.RegisterDeleted(entity);
-            return UnitOfWork.Commit();
+            _unitOfWork.RegisterDeleted(entity);
+            return _unitOfWork.Commit();
         }
 
         public int Delete(TEntity entity)
         {
-            UnitOfWork.RegisterDeleted(entity);
-            return UnitOfWork.Commit();
+            _unitOfWork.RegisterDeleted(entity);
+            return _unitOfWork.Commit();
         }
 
         public int Delete(IEnumerable<TEntity> entities)
         {
             foreach (var entity in entities)
             {
-                UnitOfWork.RegisterDeleted(entity);
+                _unitOfWork.RegisterDeleted(entity);
             }
 
-            return UnitOfWork.Commit();
+            return _unitOfWork.Commit();
         }
 
         public TEntity GetByKey(object key)
         {
-            return UnitOfWork.Context.Set<TEntity>().Find(key);
+            return _unitOfWork.Context.Set<TEntity>().Find(key);
         }
 
         public int Insert(TEntity entity)
         {
-            UnitOfWork.RegisterNew(entity);
-            return UnitOfWork.Commit();
+            _unitOfWork.RegisterNew(entity);
+            return _unitOfWork.Commit();
         }
 
         public int Isert(IEnumerable<TEntity> entities)
         {
             foreach (var entity in entities)
             {
-                UnitOfWork.RegisterNew(entity);
+                _unitOfWork.RegisterNew(entity);
             }
 
-            return UnitOfWork.Commit();
+            return _unitOfWork.Commit();
         }
 
         public int Update(TEntity entity)
         {
-            UnitOfWork.RegisterModified(entity);
-            return UnitOfWork.Commit();
+            _unitOfWork.RegisterModified(entity);
+            return _unitOfWork.Commit();
         }
     }
 }
