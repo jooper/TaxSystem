@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using Tax.ICompanyModuleService.Domain.Entities.Enums;
 
 namespace Tax.ICompanyModuleService.Domain.Entities
 {
