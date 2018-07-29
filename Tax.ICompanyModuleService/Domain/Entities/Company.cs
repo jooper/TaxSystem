@@ -22,10 +22,17 @@ namespace Tax.ICompanyModuleService.Domain.Entities
         public string LegalPerson { set; get; } //法人
         public int LegalPersonPhone { set; get; }
         public virtual ICollection<Shareholder> Shareholders { set; get; }
+      
     }
+    
+}
 
-    
-    
 
-    
+public class BaseEntityModel
+{
+    public bool IsValied { set; get; }
+    public DateTime CreateTime { set; get; }
+    public DateTime UpdateTime { set; get; }
+    public string CreateUserId { get; set; }
+    public string UpdateUserId { get; set; }
 }

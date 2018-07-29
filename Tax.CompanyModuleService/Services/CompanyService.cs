@@ -2,8 +2,8 @@
 using System.Threading.Tasks;
 using Surging.Core.ProxyGenerator;
 using Tax.CompanyModuleService.Domain.Respositories;
+using Tax.CompanyModuleService.Ext;
 using Tax.ICompanyModuleService.Domain.BaseModel.DTO;
-using Tax.ICompanyModuleService.Domain.BaseModel.Models;
 using Tax.ICompanyModuleService.Domain.Entities;
 using Tax.ICompanyModuleService.Services;
 
@@ -25,14 +25,14 @@ namespace Tax.CompanyModuleService.Services
 
         public Task<int> AddCompnay(DCompany company)
         {
-            var entityCompany = new Company { Addr = company.Name, Name = company.Name};
+            var entityCompany = company.MapTo<Company, DCompany>();
+            entityCompany.RegisterTime=DateTime.Now;
             var result = _repository.Insert(entityCompany);
             return Task.FromResult(result);
         }
 
         public Task UpdateCompany(DCompany company)
         {
-            
             var entityCompany = GetCompany(1).Result;
             entityCompany.Name = "test update";
             _repository.Update(entityCompany);
