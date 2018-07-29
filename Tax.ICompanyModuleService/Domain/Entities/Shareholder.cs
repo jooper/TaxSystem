@@ -5,7 +5,7 @@ namespace Tax.ICompanyModuleService.Domain.Entities
 {
 
     //股东
-    public class Shareholder
+    public class Shareholder:BaseEntityModel
     {
         [Key]
         public int Id { set; get; }

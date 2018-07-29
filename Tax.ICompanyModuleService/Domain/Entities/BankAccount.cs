@@ -3,7 +3,7 @@ using Tax.ICompanyModuleService.Domain.Entities.Enums;
 
 namespace Tax.ICompanyModuleService.Domain.Entities
 {
-    public class BankAccount
+    public class BankAccount:BaseEntityModel
     {
         [Key] public int Id { set; get; }
         public int CompayId { set; get; }
