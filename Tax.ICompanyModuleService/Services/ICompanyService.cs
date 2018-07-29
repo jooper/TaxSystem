@@ -6,6 +6,7 @@ using Surging.Core.CPlatform.Support;
 using Surging.Core.CPlatform.Support.Attributes;
 using Tax.ICompanyModuleService.Domain.BaseModel.DTO;
 using Tax.ICompanyModuleService.Domain.BaseModel.Models;
+using Tax.ICompanyModuleService.Domain.Entities;
 
 namespace Tax.ICompanyModuleService.Services
 {
@@ -14,7 +15,7 @@ namespace Tax.ICompanyModuleService.Services
     {
 //        [Command(Strategy = StrategyType.Injection, ShuntStrategy = AddressSelectorMode.HashAlgorithm,
 //            ExecutionTimeoutInMilliseconds = 2500, BreakerRequestVolumeThreshold = 3, Injection = @"return  null;", RequestCacheEnabled = false)]
-        Task<TbCompany> GetCompany(int id);
+        Task<Company> GetCompany(int id);
 
         Task<int> AddCompnay(DCompany company);
         Task UpdateCompany(DCompany company);

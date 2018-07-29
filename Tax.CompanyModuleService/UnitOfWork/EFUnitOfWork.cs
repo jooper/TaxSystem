@@ -17,6 +17,7 @@ namespace Tax.CompanyModuleService.UnitOfWork
             if (state == EntityState.Detached)
             {
                 Context.Entry(entity).CurrentValues.SetValues(entity);
+//                Context.Entry(entity).Property(p => p.c).CurrentValue = "Michael";  //可以在底层默认调整此字段
                 Context.Entry(entity).State = EntityState.Added;
             }
 

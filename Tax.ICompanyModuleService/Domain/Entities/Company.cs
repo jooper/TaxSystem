@@ -1,12 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using Tax.ICompanyModuleService.Domain.BaseModel;
 using Tax.ICompanyModuleService.Domain.Entities.Enums;
 
 namespace Tax.ICompanyModuleService.Domain.Entities
 {
     //公司
-    public class Company
+    public class Company: AggregateRoot
     {
         [Key]
         public int Id { set; get; }

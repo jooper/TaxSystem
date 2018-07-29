@@ -4,6 +4,7 @@ using Surging.Core.ProxyGenerator;
 using Tax.CompanyModuleService.Domain.Respositories;
 using Tax.ICompanyModuleService.Domain.BaseModel.DTO;
 using Tax.ICompanyModuleService.Domain.BaseModel.Models;
+using Tax.ICompanyModuleService.Domain.Entities;
 using Tax.ICompanyModuleService.Services;
 
 namespace Tax.CompanyModuleService.Services
@@ -17,14 +18,14 @@ namespace Tax.CompanyModuleService.Services
             _repository = repository;
         }
 
-        public Task<TbCompany> GetCompany(int id)
+        public Task<Company> GetCompany(int id)
         {
             return Task.FromResult(_repository.GetByKey(id));
         }
 
         public Task<int> AddCompnay(DCompany company)
         {
-            var entityCompany = new TbCompany {Id = company.Id, Addr = company.Name, Name = company.Name};
+            var entityCompany = new Company { Addr = company.Name, Name = company.Name};
             var result = _repository.Insert(entityCompany);
             return Task.FromResult(result);
         }
