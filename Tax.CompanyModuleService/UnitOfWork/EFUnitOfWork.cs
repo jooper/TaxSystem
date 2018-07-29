@@ -20,22 +20,6 @@ namespace Tax.CompanyModuleService.UnitOfWork
                 Context.Entry(entity).State = EntityState.Added;
             }
 
-
-            //
-            //           var  efContext = Context as EfDbContext;
-            //            state = efContext.Entry(entity).State;
-            //            if (state == EntityState.Detached)
-            //            {
-            //                efContext.Entry(entity).State = EntityState.Added;
-            //            }
-            //
-            //            efContext.SaveChanges();
-            //            //            var ddd = Context as EfDbContext;//
-            //            ////            var dbSet = Context.Set<TEntiy>();
-            //            ////            ddd.TbCompany.Add(entity as TbCompany);
-            //            //            ddd.SaveChanges();
-
-
             IsCommitted = false;
         }
 
