@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore.Infrastructure;
 using Surging.Core.ProxyGenerator;
 using Tax.CompanyModuleService.Domain.Respositories;
 using Tax.CompanyModuleService.Ext;
@@ -26,7 +27,7 @@ namespace Tax.CompanyModuleService.Services
         public Task<int> AddCompnay(DCompany company)
         {
             var entityCompany = company.MapTo<Company, DCompany>();
-            entityCompany.RegisterTime=DateTime.Now;
+            entityCompany.RegisterTime = DateTime.Now;
             var result = _repository.Insert(entityCompany);
             return Task.FromResult(result);
         }
