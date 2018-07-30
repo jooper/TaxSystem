@@ -1,11 +1,7 @@
 ﻿using System.Threading.Tasks;
 using Surging.Core.CPlatform.Ioc;
-using Surging.Core.CPlatform.Runtime.Client.Address.Resolvers.Implementation.Selectors.Implementation;
 using Surging.Core.CPlatform.Runtime.Server.Implementation.ServiceDiscovery.Attributes;
-using Surging.Core.CPlatform.Support;
-using Surging.Core.CPlatform.Support.Attributes;
 using Tax.ICompanyModuleService.Domain.BaseModel.DTO;
-using Tax.ICompanyModuleService.Domain.BaseModel.Models;
 using Tax.ICompanyModuleService.Domain.Entities;
 
 namespace Tax.ICompanyModuleService.Services
@@ -19,6 +15,5 @@ namespace Tax.ICompanyModuleService.Services
 
         Task<int> AddCompnay(DCompany company);
         Task UpdateCompany(DCompany company);
-
     }
 }
