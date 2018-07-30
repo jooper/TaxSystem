@@ -15,27 +15,18 @@ namespace Tax.CompanyModuleService.UnitOfWork
 
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-
         {
+//            var defaultcon = Configuration.GetConnectionString("DefaultConnection");
+//            var devcon = Configuration["ConnectionStrings:DevConnection"];
             optionsBuilder.UseSqlServer(DefaultSqlConnectionString,
                     providerOptions => providerOptions.CommandTimeout(160))
                 .UseQueryTrackingBehavior(QueryTrackingBehavior.NoTracking);
             base.OnConfiguring(optionsBuilder);
         }
 
-
-        public EfDbContext()
-        {
-        }
-
-        
-
         public DbSet<Company> Company { set; get; }
-        public DbSet<Shareholder> Shareholder { set; get; }
         public DbSet<BankAccount> BankAccount { set; get; }
-//        public DbSet<TbRole> TB_ROLE { set; get; }
-//        public DbSet<TbRight> TB_RIGHT { set; get; }
-//        public DbSet<TbUserrole> TB_USERROLE { set; get; }
-//        public DbSet<TbUser> TB_USER { set; get; }
+        public DbSet<Customer> Customer { set; get; }
+
     }
 }
