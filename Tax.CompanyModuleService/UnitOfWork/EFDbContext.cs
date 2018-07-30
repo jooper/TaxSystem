@@ -27,6 +27,10 @@ namespace Tax.CompanyModuleService.UnitOfWork
         public DbSet<Company> Company { set; get; }
         public DbSet<BankAccount> BankAccount { set; get; }
         public DbSet<Customer> Customer { set; get; }
+        public DbSet<User> User { set; get; }
+        public DbSet<UserRole> UserRole { set; get; }
+        public DbSet<Role> Role { set; get; }
+        public DbSet<RolePower> RowPower { set; get; }
 
     }
 }

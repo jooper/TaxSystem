@@ -54,3 +54,4 @@ Tax.IModuleServices/bin/Debug/netcoreapp2.1/Tax.IUserModuleService.deps.json
 Tax.IModuleServices/bin/Debug/netcoreapp2.1/Tax.IModuleServices.pdb
 Tax.IModuleServices/bin/Debug/netcoreapp2.1/Tax.IModuleServices.dll
 Tax.IModuleServices/bin/Debug/netcoreapp2.1/Tax.IModuleServices.deps.json
+Tax.CompanyModuleService/Migrations/
