@@ -10,3 +10,7 @@ Tax.ICompanyModuleService/obj/
 Tax.ICompanyModuleService/bin/
 Tax.CompanyModuleService/obj/
 Tax.CompanyModuleService/bin/
+Tax.CompanyModuleService/Migrations/EfDbContextModelSnapshot.cs
+Tax.CompanyModuleService/Migrations/20180730053023_Add_CustomerTable.cs
+Tax.CompanyModuleService/Migrations/20180730053023_Add_CustomerTable.Designer.cs
+.vs/Tax/v15/Server/sqlite3/storage.ide-shm
