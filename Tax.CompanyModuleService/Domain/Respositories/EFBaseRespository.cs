@@ -1,5 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using Surging.Core.CPlatform.Ioc;
 using Tax.CompanyModuleService.UnitOfWork;
 using Tax.ICompanyModuleService.Domain.BaseModel;
@@ -12,9 +14,9 @@ namespace Tax.CompanyModuleService.Domain.Respositories
     {
         private readonly EfUnitOfWork _unitOfWork = new EfUnitOfWork();
 
-        public IQueryable<TEntity> Entities => _unitOfWork.Context.Set<TEntity>();
+        public virtual IQueryable<TEntity> Entities => _unitOfWork.Context.Set<TEntity>();
 
-        public int Delete(object id)
+        public virtual int Delete(object id)
         {
             var entity = _unitOfWork.Context.Set<TEntity>().Find(id);
             if (entity == null)
@@ -24,13 +26,13 @@ namespace Tax.CompanyModuleService.Domain.Respositories
             return _unitOfWork.Commit();
         }
 
-        public int Delete(TEntity entity)
+        public virtual int Delete(TEntity entity)
         {
             _unitOfWork.RegisterDeleted(entity);
             return _unitOfWork.Commit();
         }
 
-        public int Delete(IEnumerable<TEntity> entities)
+        public virtual int Delete(IEnumerable<TEntity> entities)
         {
             foreach (var entity in entities)
             {
@@ -40,23 +42,23 @@ namespace Tax.CompanyModuleService.Domain.Respositories
             return _unitOfWork.Commit();
         }
 
-        public bool Exist(TEntity ent)
+        public virtual bool Exist(TEntity ent)
         {
             return _unitOfWork.Context.Set<TEntity>().Contains(ent);
         }
 
-        public bool Exist(object key)
+        public virtual bool Exist(object key)
         {
             var ent = GetByKey(key);
             return ent != null;
         }
 
-        public TEntity GetByKey(object key)
+        public virtual TEntity GetByKey(object key)
         {
             return _unitOfWork.Context.Set<TEntity>().Find(key);
         }
 
-        public int Insert(TEntity entity)
+        public virtual int Insert(TEntity entity)
         {
             if (Exist(entity))
                 return 0;
@@ -64,7 +66,7 @@ namespace Tax.CompanyModuleService.Domain.Respositories
             return _unitOfWork.Commit();
         }
 
-        public int Isert(IEnumerable<TEntity> entities)
+        public virtual int Isert(IEnumerable<TEntity> entities)
         {
             foreach (var entity in entities)
             {
@@ -75,9 +77,27 @@ namespace Tax.CompanyModuleService.Domain.Respositories
             return _unitOfWork.Commit();
         }
 
-        public int Update(TEntity entity)
+        public virtual int Update(TEntity entity)
         {
             _unitOfWork.RegisterModified(entity);
+            return _unitOfWork.Commit();
+        }
+
+        public virtual IQueryable<TEntity> Find(Expression<Func<TEntity, bool>> express)
+        {
+            Func<TEntity, bool> lamada = express.Compile();
+            return _unitOfWork.Context.Set<TEntity>().Where(lamada).AsQueryable<TEntity>();
+        }
+
+
+        public virtual int Delete(Expression<Func<TEntity, bool>> express)
+        {
+            Func<TEntity, bool> lamada = express.Compile();
+            var lstEntity = _unitOfWork.Context.Set<TEntity>().Where(lamada);
+            foreach (var entity in lstEntity)
+            {
+                _unitOfWork.RegisterDeleted(entity);
+            }
             return _unitOfWork.Commit();
         }
     }
