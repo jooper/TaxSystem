@@ -1,9 +1,10 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using Tax.ICompanyModuleService.Domain.BaseModel;
 
 namespace Tax.ICompanyModuleService.Domain.Entities
 {
-    public class User:BaseEntity
+    public class User:AggregateRoot
     {
         [Key]
         public int Id { set; get; }

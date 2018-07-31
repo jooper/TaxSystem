@@ -1,16 +1,15 @@
-﻿using System.Threading.Tasks;
-using Surging.Core.CPlatform.Ioc;
-using Tax.ICompanyModuleService.Domain.BaseModel.Models;
+﻿using System;
+using System.Threading.Tasks;
 using Tax.ICompanyModuleService.Domain.Entities;
 using Tax.ICompanyModuleService.Domain.IRepositories;
 
 namespace Tax.CompanyModuleService.Domain.Respositories
 {
-    public class CompanyRespository : EfBaseRespository<Company>,  ICompanyRespository
+    public class CompanyRespository : EfBaseRespository<Company>, ICompanyRespository
     {
         public Task<string> GetCompanyNmae()
         {
-            throw new System.NotImplementedException();
+            throw new NotImplementedException();
         }
     }
 }
