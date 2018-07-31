@@ -27,6 +27,11 @@ namespace Tax.CompanyModuleService.Services
         {
             var entityCompany = company.MapTo<Company, DCompany>();
             entityCompany.RegisterTime = DateTime.Now;
+            entityCompany.CreateTime=DateTime.Now;
+            entityCompany.UpdateTime=DateTime.Now;
+            entityCompany.CreateUserId = "1";
+            entityCompany.UpdateUserId = "2";
+            entityCompany.LegalPerson = "3";
             var result = _repository.Insert(entityCompany);
             return Task.FromResult(result);
         }
