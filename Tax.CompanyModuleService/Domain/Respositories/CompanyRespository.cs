@@ -9,7 +9,7 @@ namespace Tax.CompanyModuleService.Domain.Respositories
     {
         public Task<string> GetCompanyNmae()
         {
-            throw new NotImplementedException();
+            return Task.FromResult(string.Empty);
         }
     }
 }

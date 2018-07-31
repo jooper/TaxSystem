@@ -1,13 +1,10 @@
-﻿using System;
-using System.Linq;
-using JWT.Algorithms;
-using JWT.Builder;
+﻿using System.Linq;
+using System.Threading.Tasks;
 using Surging.Core.ProxyGenerator;
+using Tax.CompanyModuleService.Domain.Respositories;
 using Tax.CompanyModuleService.Uinities;
-using Tax.ICompanyModuleService.Domain.Entities;
 using Tax.ICompanyModuleService.Domain.IRepositories;
 using Tax.ICompanyModuleService.Services;
-
 
 namespace Tax.CompanyModuleService.Services
 {
@@ -15,12 +12,15 @@ namespace Tax.CompanyModuleService.Services
     {
         private readonly IUserRespository _userRespository;
 
-
-        public UserService(IUserRespository userRespository)
+        public UserService(UserRespository userRespository)
         {
             _userRespository = userRespository;
         }
 
+        public Task Login(string account, string md5Pwd)
+        {
+            return Task.CompletedTask;
+        }
 
         public string GetToken(string account, string pwd)
         {
@@ -29,12 +29,5 @@ namespace Tax.CompanyModuleService.Services
             TokenProvider.ResolveToken(token);
             return string.Empty;
         }
-
-
-
-
-
-
-
     }
 }
