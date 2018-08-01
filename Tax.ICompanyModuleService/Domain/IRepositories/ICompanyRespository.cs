@@ -1,6 +1,5 @@
 ﻿using System.Threading.Tasks;
-using Tax.ICompanyModuleService.Domain.BaseModel.Models;
-using Tax.ICompanyModuleService.Domain.Entities;
+using Tax.ICompanyModuleService.Domain.BaseModel.Entities;
 
 namespace Tax.ICompanyModuleService.Domain.IRepositories
 {

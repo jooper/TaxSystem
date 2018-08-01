@@ -1,9 +1,9 @@
 ﻿using Tax.ICompanyModuleService.Domain.BaseModel.Entities;
 using Tax.ICompanyModuleService.Domain.Entities;
 
-namespace Tax.ICompanyModuleService.Domain.IRepositories
+namespace Tax.ICompanyModuleService.Domain.BaseModel.DTO
 {
-    public interface IUserRespository:IRepository<User>
+    public class BaseDto:BaseEntity
     {
         
     }

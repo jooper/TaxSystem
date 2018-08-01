@@ -1,9 +1,13 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 using Surging.Core.ProxyGenerator;
 using Tax.CompanyModuleService.Domain.Respositories;
 using Tax.CompanyModuleService.Ext;
 using Tax.ICompanyModuleService.Domain.BaseModel.DTO;
+using Tax.ICompanyModuleService.Domain.BaseModel.Entities;
 using Tax.ICompanyModuleService.Domain.Entities;
 using Tax.ICompanyModuleService.Services;
 
@@ -18,25 +22,29 @@ namespace Tax.CompanyModuleService.Services
             _repository = repository;
         }
 
-        public Task<Company> GetCompany(int id)
+        public async Task<Company> GetCompanyAsync(int id)
         {
-            return Task.FromResult(_repository.GetByKey(id));
+            return await Task.FromResult(_repository.GetByKey(id));
         }
 
-        public Task<int> AddCompnay(DCompany company)
+        public async Task<List<Company>> GetCompanysAsync()
+        {
+            return await _repository.Entities.ToListAsync();
+        }
+
+        public async Task<int> AddCompnayAsync(DCompany company)
         {
             var entityCompany = company.MapTo<Company, DCompany>();
             entityCompany.RegisterTime = DateTime.Now;
             var result = _repository.Insert(entityCompany);
-            return Task.FromResult(result);
+            return await Task.FromResult(result);
         }
 
-        public Task UpdateCompany(DCompany company)
+        public async Task UpdateCompanyAsync(DCompany company)
         {
-            var entityCompany = GetCompany(1).Result;
-            entityCompany.Name = "test update";
+            var entityCompany = company.MapTo<Company, DCompany>();
             _repository.Update(entityCompany);
-            return null;
+            await Task.CompletedTask;
         }
     }
 }

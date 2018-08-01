@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace Tax.ICompanyModuleService.Domain.Entities
+﻿namespace Tax.ICompanyModuleService.Domain.BaseModel.Entities
 {
     public class RolePower:BaseEntity
     {

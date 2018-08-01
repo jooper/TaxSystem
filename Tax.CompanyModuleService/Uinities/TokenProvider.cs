@@ -1,7 +1,8 @@
 ﻿using System;
+using System.Security.Cryptography;
+using System.Text;
 using JWT.Algorithms;
 using JWT.Builder;
-using Tax.ICompanyModuleService.Domain.Entities;
 
 namespace Tax.CompanyModuleService.Uinities
 {
@@ -18,15 +19,29 @@ namespace Tax.CompanyModuleService.Uinities
             return json;
         }
 
-        public static string GenerateToken(string account, User userEntity)
+        public static string GenerateToken(string account, string md5Pwd)
         {
             var token = new JwtBuilder()
                 .WithAlgorithm(new HMACSHA256Algorithm())
                 .WithSecret(Secret)
                 .AddClaim("exp", DateTimeOffset.UtcNow.AddHours(1).ToUnixTimeSeconds())
-                .AddClaim(account, userEntity?.PwdMd5)
+                .AddClaim(account, md5Pwd)
                 .Build();
             return token;
+        }
+
+
+        public static string Hash(string value)
+        {
+            var src = Encoding.UTF8.GetBytes(value);
+            var md5 = MD5.Create();
+            var hashed = md5.ComputeHash(src);
+
+            var res = new StringBuilder(64);
+            foreach (var b in hashed)
+                res.Append(b.ToString("x2"));
+
+            return res.ToString();
         }
     }
 }

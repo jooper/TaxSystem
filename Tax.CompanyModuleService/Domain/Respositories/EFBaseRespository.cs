@@ -83,7 +83,8 @@ namespace Tax.CompanyModuleService.Domain.Respositories
             return _unitOfWork.Commit();
         }
 
-        public virtual IQueryable<TEntity> Find(Expression<Func<TEntity, bool>> express)
+
+       public virtual IQueryable<TEntity> Find(Expression<Func<TEntity, bool>> express)
         {
             Func<TEntity, bool> lamada = express.Compile();
             return _unitOfWork.Context.Set<TEntity>().Where(lamada).AsQueryable<TEntity>();
