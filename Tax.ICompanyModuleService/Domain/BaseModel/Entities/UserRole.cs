@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace Tax.ICompanyModuleService.Domain.Entities
+namespace Tax.ICompanyModuleService.Domain.BaseModel.Entities
 {
     public class UserRole:BaseEntity
     {

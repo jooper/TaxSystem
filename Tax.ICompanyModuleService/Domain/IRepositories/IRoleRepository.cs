@@ -1,8 +1,9 @@
-﻿using Tax.ICompanyModuleService.Domain.BaseModel.Models;
+﻿
+using Tax.ICompanyModuleService.Domain.BaseModel.Entities;
 
 namespace Tax.ICompanyModuleService.Domain.IRepositories
 {
-    public interface IRoleRepository:IRepository<TbRole>
+    public interface IRoleRepository:IRepository<Role>
     {
         
     }

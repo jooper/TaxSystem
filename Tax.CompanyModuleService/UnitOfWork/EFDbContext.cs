@@ -1,7 +1,6 @@
-﻿using System.Runtime.InteropServices.ComTypes;
-using Microsoft.EntityFrameworkCore;
-using Tax.ICompanyModuleService.Domain.BaseModel.Models;
-using Tax.ICompanyModuleService.Domain.Entities;
+﻿using Microsoft.EntityFrameworkCore;
+using Tax.ICompanyModuleService.Domain.BaseModel.Entities;
+
 
 namespace Tax.CompanyModuleService.UnitOfWork
 {

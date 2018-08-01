@@ -4,6 +4,7 @@ using Surging.Core.ProxyGenerator;
 using Tax.CompanyModuleService.Domain.Respositories;
 using Tax.CompanyModuleService.Ext;
 using Tax.ICompanyModuleService.Domain.BaseModel.DTO;
+using Tax.ICompanyModuleService.Domain.BaseModel.Entities;
 using Tax.ICompanyModuleService.Domain.Entities;
 using Tax.ICompanyModuleService.Services;
 

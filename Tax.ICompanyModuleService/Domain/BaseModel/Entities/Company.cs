@@ -1,11 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
-using Tax.ICompanyModuleService.Domain.BaseModel;
 using Tax.ICompanyModuleService.Domain.Entities.Enums;
 
-namespace Tax.ICompanyModuleService.Domain.Entities
+namespace Tax.ICompanyModuleService.Domain.BaseModel.Entities
 {
     //公司
     public class Company: AggregateRoot
