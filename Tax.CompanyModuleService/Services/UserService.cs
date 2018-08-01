@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
 using System.Threading.Tasks;
+using MongoDB.Bson.IO;
 using Surging.Core.CPlatform.Ioc;
 using Surging.Core.CPlatform.Transport.Implementation;
 using Surging.Core.ProxyGenerator;
@@ -25,14 +26,6 @@ namespace Tax.CompanyModuleService.Services
             _userRespository = userRespository;
         }
 
-
-        public async Task<string> Login(string account, string md5Pwd)
-        {
-            var token = TokenProvider.GenerateToken(account, md5Pwd);
-            return await Task.FromResult(token);
-        }
-
-
         //返回对象，不然框架回默认返回有效token
         public async Task<User> Authentication(AuthenticationRequestData requestData)
         {
@@ -46,6 +39,7 @@ namespace Tax.CompanyModuleService.Services
         {
             //获取网关通过netty传递过来的参数
             var headRequest = RpcContext.GetContext().GetContextParameters().FirstOrDefault();
+
 
             throw new Exception("用户Id非法！" + headRequest.Value);
             return await Task.FromResult(true);
