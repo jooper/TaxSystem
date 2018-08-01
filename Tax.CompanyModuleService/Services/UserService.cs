@@ -1,13 +1,16 @@
 ﻿using System.Linq;
 using System.Threading.Tasks;
+using Surging.Core.CPlatform.Ioc;
 using Surging.Core.ProxyGenerator;
 using Tax.CompanyModuleService.Domain.Respositories;
 using Tax.CompanyModuleService.Uinities;
+using Tax.ICompanyModuleService.Domain.BaseModel.DTO;
 using Tax.ICompanyModuleService.Domain.IRepositories;
 using Tax.ICompanyModuleService.Services;
 
 namespace Tax.CompanyModuleService.Services
 {
+    [ModuleName("User")]
     public class UserService : ProxyServiceBase, IUserService
     {
         private readonly IUserRespository _userRespository;
@@ -17,17 +20,21 @@ namespace Tax.CompanyModuleService.Services
             _userRespository = userRespository;
         }
 
-        public Task Login(string account, string md5Pwd)
+        public Task<string> Login(string account, string md5Pwd)
         {
-            return Task.CompletedTask;
+            var token = TokenProvider.GenerateToken(account, md5Pwd);
+            return Task.FromResult(token);
         }
 
-        public string GetToken(string account, string pwd)
+        public Task<string> Authentication(AuthenticationRequestData requestData)
         {
-            var userEntity = _userRespository.Find(x => x.Name == account && x.PwdMd5 == pwd).FirstOrDefault();
-            var token = TokenProvider.GenerateToken(account, userEntity);
-            TokenProvider.ResolveToken(token);
-            return string.Empty;
+            var userEntity = _userRespository
+                .Find(x => x.Name == requestData.UserName && x.PwdMd5 == requestData.Password)
+                .FirstOrDefault();
+            if (userEntity == null)
+                return Task.FromResult(string.Empty);
+            var token = TokenProvider.GenerateToken(requestData.UserName, requestData.Password);
+            return Task.FromResult(token);
         }
     }
 }

@@ -18,13 +18,13 @@ namespace Tax.CompanyModuleService.Uinities
             return json;
         }
 
-        public static string GenerateToken(string account, User userEntity)
+        public static string GenerateToken(string account,string md5Pwd)
         {
             var token = new JwtBuilder()
                 .WithAlgorithm(new HMACSHA256Algorithm())
                 .WithSecret(Secret)
                 .AddClaim("exp", DateTimeOffset.UtcNow.AddHours(1).ToUnixTimeSeconds())
-                .AddClaim(account, userEntity?.PwdMd5)
+                .AddClaim(account, md5Pwd)
                 .Build();
             return token;
         }
