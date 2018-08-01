@@ -36,15 +36,13 @@ namespace Tax.CompanyModuleService.Services
         {
             var entityCompany = company.MapTo<Company, DCompany>();
             entityCompany.RegisterTime = DateTime.Now;
-            entityCompany.LegalPerson = "3";
             var result = _repository.Insert(entityCompany);
             return await Task.FromResult(result);
         }
 
         public async Task UpdateCompanyAsync(DCompany company)
         {
-            var entityCompany = GetCompanyAsync(1).Result;
-            entityCompany.Name = "test update";
+            var entityCompany = company.MapTo<Company, DCompany>();
             _repository.Update(entityCompany);
             await Task.CompletedTask;
         }

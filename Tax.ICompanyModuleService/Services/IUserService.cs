@@ -17,6 +17,6 @@ namespace Tax.ICompanyModuleService.Services
 
 
         [Authorization(AuthType = AuthorizationType.JWT)]
-        Task<bool> AddUser(DUser user);
+        Task<bool> AddUserAsync(DUser user);
     }
 }
