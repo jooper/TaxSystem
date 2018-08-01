@@ -1,6 +1,8 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using System.Threading.Tasks;
 using Surging.Core.CPlatform.Ioc;
+using Surging.Core.CPlatform.Transport.Implementation;
 using Surging.Core.ProxyGenerator;
 using Tax.CompanyModuleService.Domain.Respositories;
 using Tax.CompanyModuleService.Ext;
@@ -38,11 +40,13 @@ namespace Tax.CompanyModuleService.Services
                 .Find(x => x.Name == requestData.UserName && x.PwdMd5 == requestData.Password)
                 .FirstOrDefault();
 
-            return Task.FromResult(new User{Name = "jooper",PwdMd5 = "dfdafd"});
+            return Task.FromResult(new User {Name = "jooper", PwdMd5 = "dfdafd"});
         }
 
         public Task<bool> TestAccessToken()
         {
+            //获取网关通过netty传递过来的参数
+            var headRequest = RpcContext.GetContext().GetContextParameters().FirstOrDefault();
             return Task.FromResult(true);
         }
 
