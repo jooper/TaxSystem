@@ -29,8 +29,9 @@ namespace Tax.CompanyModuleService.Services
         //返回对象，不然框架回默认返回有效token
         public async Task<User> Authentication(AuthenticationRequestData requestData)
         {
+            var pwdMd5 = TokenProvider.Hash(requestData.Password);
             var userEntity = _userRespository
-                .Find(x => x.Name == requestData.UserName && x.PwdMd5 == requestData.Password)
+                .Find(x => x.Account == requestData.UserName && x.PwdMd5 == pwdMd5 && x.IsValied)
                 .FirstOrDefault();
             return await Task.FromResult(userEntity);
         }
