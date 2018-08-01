@@ -46,7 +46,7 @@ namespace Tax.CompanyModuleService.Services
             return await Task.FromResult(true);
         }
 
-        public async Task<bool> AddUser(DUser user)
+        public async Task<bool> AddUserAsync(DUser user)
         {
             var entity = _userRespository.Find(x => x.Account == user.Account).FirstOrDefault();
             if (entity != null)

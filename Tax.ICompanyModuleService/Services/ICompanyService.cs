@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 using Surging.Core.CPlatform.Ioc;
 using Surging.Core.CPlatform.Runtime.Server.Implementation.ServiceDiscovery.Attributes;
 using Tax.ICompanyModuleService.Domain.BaseModel.DTO;
@@ -13,7 +14,7 @@ namespace Tax.ICompanyModuleService.Services
 //        [Command(Strategy = StrategyType.Injection, ShuntStrategy = AddressSelectorMode.HashAlgorithm,
 //            ExecutionTimeoutInMilliseconds = 2500, BreakerRequestVolumeThreshold = 3, Injection = @"return  null;", RequestCacheEnabled = false)]
         Task<Company> GetCompany(int id);
-
+        Task<List<Company>> GetCompanys();
         Task<int> AddCompnay(DCompany company);
         Task UpdateCompany(DCompany company);
     }
