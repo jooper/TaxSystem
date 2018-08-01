@@ -7,6 +7,7 @@ namespace Tax.ICompanyModuleService.Domain.BaseModel.Entities
     {
         [Key]
         public int Id { set; get; }
+        public string Account { set; get; }
         public string Name { set; get; }
         public string Phone { set; get; }
         public string PwdMd5 { set; get; }

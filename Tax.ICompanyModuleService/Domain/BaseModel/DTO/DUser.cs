@@ -14,5 +14,6 @@ namespace Tax.ICompanyModuleService.Domain.BaseModel.DTO
         [ProtoMember(4)] public string PwdMd5 { set; get; }
         [ProtoMember(5)] public string NickName { set; get; }
         [ProtoMember(6)] public virtual List<UserRole> Roles { set; get; }
+        [ProtoMember(7)] public string Account { set; get; }
     }
 }

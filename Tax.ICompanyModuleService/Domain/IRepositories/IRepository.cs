@@ -24,6 +24,7 @@ namespace Tax.ICompanyModuleService.Domain.IRepositories
         TEntity GetByKey(object key);
         bool Exist(object key);
         bool Exist(TEntity ent);
+        
 
 
 
