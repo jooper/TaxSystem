@@ -46,6 +46,8 @@ namespace Tax.CompanyModuleService.Services
         {
             //获取网关通过netty传递过来的参数
             var headRequest = RpcContext.GetContext().GetContextParameters().FirstOrDefault();
+
+            throw new Exception("用户Id非法！" + headRequest.Value);
             return await Task.FromResult(true);
         }
 
