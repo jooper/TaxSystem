@@ -3,7 +3,10 @@ using Tax.ICompanyModuleService.Domain.Entities.Enums;
 
 namespace Tax.ICompanyModuleService.Domain.BaseModel.Entities
 {
-    public class BankAccount:BaseEntity
+    /// <summary>
+    /// 公司开户信息
+    /// </summary>
+    public class BankAccount:AggregateRoot
     {
         [Key] public int Id { set; get; }
         public int CompayId { set; get; }
