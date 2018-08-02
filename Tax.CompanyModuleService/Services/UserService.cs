@@ -39,9 +39,7 @@ namespace Tax.CompanyModuleService.Services
         public async Task<bool> TestAccessToken()
         {
             //获取网关通过netty传递过来的参数
-            var headRequest = RpcContext.GetContext().GetContextParameters().FirstOrDefault();
-
-
+            var headRequest = RpcProvider.GetRpcPayload();
             throw new Exception("用户Id非法！" + headRequest.Value);
             return await Task.FromResult(true);
         }
