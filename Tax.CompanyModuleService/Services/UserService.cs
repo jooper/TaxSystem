@@ -1,16 +1,13 @@
 ﻿using System;
 using System.Linq;
 using System.Threading.Tasks;
-using MongoDB.Bson.IO;
 using Surging.Core.CPlatform.Ioc;
-using Surging.Core.CPlatform.Transport.Implementation;
 using Surging.Core.ProxyGenerator;
 using Tax.CompanyModuleService.Domain.Respositories;
 using Tax.CompanyModuleService.Ext;
 using Tax.CompanyModuleService.Uinities;
 using Tax.ICompanyModuleService.Domain.BaseModel.DTO;
 using Tax.ICompanyModuleService.Domain.BaseModel.Entities;
-using Tax.ICompanyModuleService.Domain.Entities;
 using Tax.ICompanyModuleService.Domain.IRepositories;
 using Tax.ICompanyModuleService.Services;
 
