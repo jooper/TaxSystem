@@ -2,7 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
+using Microsoft.Extensions.DependencyInjection;
 using Surging.Core.CPlatform.Ioc;
+using Tax.CompanyModuleService.DI;
 using Tax.CompanyModuleService.UnitOfWork;
 using Tax.ICompanyModuleService.Domain.BaseModel;
 using Tax.ICompanyModuleService.Domain.IRepositories;
@@ -12,7 +14,9 @@ namespace Tax.CompanyModuleService.Domain.Respositories
     public class EfBaseRespository<TEntity> : BaseRepository, IRepository<TEntity>
         where TEntity : AggregateRoot
     {
-        private readonly EfUnitOfWork _unitOfWork = new EfUnitOfWork();
+        private readonly IEfUnitOfWork
+            _unitOfWork = ServiceDiProvider.GetDiProivder().GetService<IEfUnitOfWork>(); 
+
 
         public virtual IQueryable<TEntity> Entities => _unitOfWork.Context.Set<TEntity>();
 
@@ -84,7 +88,7 @@ namespace Tax.CompanyModuleService.Domain.Respositories
         }
 
 
-       public virtual IQueryable<TEntity> Find(Expression<Func<TEntity, bool>> express)
+        public virtual IQueryable<TEntity> Find(Expression<Func<TEntity, bool>> express)
         {
             Func<TEntity, bool> lamada = express.Compile();
             return _unitOfWork.Context.Set<TEntity>().Where(lamada).AsQueryable<TEntity>();
@@ -99,6 +103,7 @@ namespace Tax.CompanyModuleService.Domain.Respositories
             {
                 _unitOfWork.RegisterDeleted(entity);
             }
+
             return _unitOfWork.Commit();
         }
     }

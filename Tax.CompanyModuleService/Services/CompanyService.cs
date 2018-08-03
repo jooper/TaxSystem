@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using Surging.Core.ProxyGenerator;
@@ -8,7 +7,6 @@ using Tax.CompanyModuleService.Domain.Respositories;
 using Tax.CompanyModuleService.Ext;
 using Tax.ICompanyModuleService.Domain.BaseModel.DTO;
 using Tax.ICompanyModuleService.Domain.BaseModel.Entities;
-using Tax.ICompanyModuleService.Domain.Entities;
 using Tax.ICompanyModuleService.Services;
 
 namespace Tax.CompanyModuleService.Services

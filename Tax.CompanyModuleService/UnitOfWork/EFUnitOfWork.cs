@@ -1,14 +1,17 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
+using Tax.CompanyModuleService.DI;
 using Tax.ICompanyModuleService.Domain.BaseModel;
 
 namespace Tax.CompanyModuleService.UnitOfWork
 {
     public class EfUnitOfWork : IEfUnitOfWork
     {
-        public EfDbContext EfDbContextContext = new EfDbContext();
+        public IEfDbContext
+            EfDbContextContext = ServiceDiProvider.GetDiProivder().GetService<IEfDbContext>(); //new EfDbContext();
 
-        public DbContext Context => EfDbContextContext;
+        public DbContext Context => EfDbContextContext as EfDbContext;
 
 
         public void RegisterNew<TEntiy>(TEntiy entity) where TEntiy : AggregateRoot

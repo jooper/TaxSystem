@@ -55,3 +55,5 @@ Tax.IModuleServices/bin/Debug/netcoreapp2.1/Tax.IModuleServices.pdb
 Tax.IModuleServices/bin/Debug/netcoreapp2.1/Tax.IModuleServices.dll
 Tax.IModuleServices/bin/Debug/netcoreapp2.1/Tax.IModuleServices.deps.json
 Tax.CompanyModuleService/Migrations/
+Tax.Server/Properties/PublishProfiles/FolderProfile.pubxml.user
+Tax.Server/Properties/PublishProfiles/FolderProfile.pubxml
