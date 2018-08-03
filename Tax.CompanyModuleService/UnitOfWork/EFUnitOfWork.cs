@@ -8,11 +8,15 @@ namespace Tax.CompanyModuleService.UnitOfWork
 {
     public class EfUnitOfWork : IEfUnitOfWork
     {
-        public IEfDbContext
-            EfDbContextContext = ServiceDiProvider.GetDiProivder().GetService<IEfDbContext>(); //new EfDbContext();
+        //        public IEfDbContext
+        //            EfDbContextContext = ServiceDiProvider.GetDiProivder().GetService<IEfDbContext>(); //new EfDbContext();
+        //        public DbContext Context =>EfDbContextContext as EfDbContext;
 
-        public DbContext Context => EfDbContextContext as EfDbContext;
-
+        public DbContext Context { get; set; }
+        public EfUnitOfWork(EfDbContext context)
+        {
+            Context = context;
+        }
 
         public void RegisterNew<TEntiy>(TEntiy entity) where TEntiy : AggregateRoot
         {
@@ -74,5 +78,7 @@ namespace Tax.CompanyModuleService.UnitOfWork
 
             Context.Dispose();
         }
+
+        
     }
 }

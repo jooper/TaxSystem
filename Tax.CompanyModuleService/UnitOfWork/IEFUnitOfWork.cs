@@ -6,6 +6,7 @@ namespace Tax.CompanyModuleService.UnitOfWork
 {
     public interface IEfUnitOfWork : IUnitOfWorkRespositoryContext, IServiceKey
     {
-        DbContext Context { get; }
+        //        DbContext Context { get; }
+        DbContext Context { get; set; }
     }
 }
