@@ -14,7 +14,7 @@ namespace Tax.CompanyModuleService.Domain.Respositories
     public class EfBaseRespository<TEntity> : BaseRepository, IRepository<TEntity>
         where TEntity : AggregateRoot
     {
-        private readonly IEfUnitOfWork _unitOfWork = ServiceDiProvider.GetDiProivder().GetService<IEfUnitOfWork>();
+        public readonly IEfUnitOfWork _unitOfWork = ServiceDiProvider.GetDiProivder().GetService<IEfUnitOfWork>();
 
         public virtual IQueryable<TEntity> Entities => _unitOfWork.Context.Set<TEntity>();
 

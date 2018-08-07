@@ -17,20 +17,30 @@ namespace Tax.CompanyModuleService.Services
     public class UserService : ProxyServiceBase, IUserService
     {
         private readonly IUserRespository _userRespository;
+        private readonly IRoleRespository _roleRespository;
 
-        public UserService(UserRespository userRespository)
+        public UserService(UserRespository userRespository, RoleRespository roleRespository)
         {
             _userRespository = userRespository;
+            _roleRespository = roleRespository;
         }
 
         //返回对象，不然框架回默认返回有效token
-        public async Task<User> Authentication(AuthenticationRequestData requestData)
+        public async Task<DUser> Authentication(AuthenticationRequestData requestData)
         {
             var pwdMd5 = TokenProvider.Hash(requestData.Password);
             var userEntity = _userRespository
                 .Find(x => x.Account == requestData.UserName && x.PwdMd5 == pwdMd5 && x.IsValied)
                 .FirstOrDefault();
-            return await Task.FromResult(userEntity);
+
+            if (userEntity == null)
+                return null;
+
+            var roles = await _roleRespository.GetRolesAsync(userEntity.Id);
+
+            var authorazationUser = userEntity.MapTo<DUser, User>();
+            authorazationUser.Roles = roles;
+            return await Task.FromResult(authorazationUser);
         }
 
         public async Task<bool> TestAccessToken()
@@ -52,5 +62,7 @@ namespace Tax.CompanyModuleService.Services
             _userRespository.Insert(userEntity);
             return await Task.FromResult(true);
         }
+
+  
     }
 }

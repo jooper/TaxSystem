@@ -9,12 +9,12 @@ using Surging.Core.CPlatform.Utilities;
 using Surging.Core.ProxyGenerator;
 using Surging.Core.ServiceHosting;
 using Surging.Core.ServiceHosting.Internal.Implementation;
-using Tax.Services.Server;
+
 //using Surging.Core.EventBusKafka;
 //using Surging.Core.Zookeeper;
 //using Surging.Core.Zookeeper.Configurations;
 
-namespace Surging.Services.Server
+namespace Tax.Services.Server
 {
     public class Program
     {

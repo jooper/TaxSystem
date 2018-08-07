@@ -10,13 +10,15 @@ namespace Tax.ICompanyModuleService.Services
     [ServiceBundle("api/{Service}")]
     public interface IUserService : IServiceKey
     {
-        Task<User> Authentication(AuthenticationRequestData account);
+        Task<DUser> Authentication(AuthenticationRequestData account);
 
         [Authorization(AuthType = AuthorizationType.JWT)]
         Task<bool> TestAccessToken();
 
 
-        [Authorization(AuthType = AuthorizationType.JWT)]
+        [Authorization(AuthType = AuthorizationType.JWT,RoleType = RoleType.Admin)]
         Task<bool> AddUserAsync(DUser user);
+
+
     }
 }
