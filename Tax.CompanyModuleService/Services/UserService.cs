@@ -40,7 +40,7 @@ namespace Tax.CompanyModuleService.Services
 
             var authorazationUser = userEntity.MapTo<DUser, User>();
             authorazationUser.Roles = roles;
-            return await Task.FromResult(authorazationUser);
+            return authorazationUser;
         }
 
         public async Task<bool> TestAccessToken()
@@ -62,7 +62,5 @@ namespace Tax.CompanyModuleService.Services
             _userRespository.Insert(userEntity);
             return await Task.FromResult(true);
         }
-
-  
     }
 }
