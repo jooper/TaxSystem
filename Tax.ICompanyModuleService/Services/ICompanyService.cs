@@ -14,8 +14,9 @@ namespace Tax.ICompanyModuleService.Services
 //        [Command(Strategy = StrategyType.Injection, ShuntStrategy = AddressSelectorMode.HashAlgorithm,
 //            ExecutionTimeoutInMilliseconds = 2500, BreakerRequestVolumeThreshold = 3, Injection = @"return  null;", RequestCacheEnabled = false)]
         Task<Company> GetCompanyAsync(int id);
-        Task<List<Company>> GetCompanysAsync();
+        Task<List<DCompany>> GetCompanysAsync();
         Task<int> AddCompnayAsync(DCompany company);
         Task UpdateCompanyAsync(DCompany company);
+        Task<bool> AddShareholderAsync(DShareholder shareholder);
     }
 }
