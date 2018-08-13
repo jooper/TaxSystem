@@ -12,7 +12,7 @@ namespace Tax.ICompanyModuleService.Domain.BaseModel.DTO
     [ProtoContract]
     public class DCompany: BaseDto
     {
-        [ProtoMember(1)] [CacheKey(1)] public int Id { set; get; }
+        [ProtoMember(1)] [CacheKey(1)] public int CompanyId { set; get; }
 
         [ProtoMember(2)]
         [Required]
@@ -30,11 +30,11 @@ namespace Tax.ICompanyModuleService.Domain.BaseModel.DTO
 
         [ProtoMember(8)] public string LinkMan { set; get; } //联系人
 
-        [ProtoMember(9)] public int LinkManPhone { set; get; }
+        [ProtoMember(9)] public string LinkManPhone { set; get; }
 
         [ProtoMember(10)] public string LegalPerson { set; get; } //法人
 
-        [ProtoMember(11)] public int LegalPersonPhone { set; get; }
+        [ProtoMember(11)] public string LegalPersonPhone { set; get; }
 
         [ProtoMember(12)] public virtual List<Shareholder> Shareholders { set; get; }
     }

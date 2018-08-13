@@ -16,7 +16,7 @@ namespace Tax.ICompanyModuleService.Services
         Task<bool> TestAccessToken();
 
 
-        [Authorization(AuthType = AuthorizationType.JWT,RoleType = RoleType.Admin)]
+//        [Authorization(AuthType = AuthorizationType.JWT,RoleType = RoleType.Admin)]
         Task<bool> AddUserAsync(DUser user);
 
 
