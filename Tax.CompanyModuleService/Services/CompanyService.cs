@@ -32,11 +32,11 @@ namespace Tax.CompanyModuleService.Services
             return await Task.FromResult(count);
         }
 
-        public async Task<List<DCompany>> GetCompanysAsync(int pageIndex, int offSet)
+        public async Task<List<DCompany>> GetCompanysAsync(int offSet, int take)
         {
             var companies = await _repository.Entities.Where(w => w.IsValied)
                 .Include(x => x.Shareholders)
-                .OrderByDescending(o => o.RegisterTime).Skip(pageIndex).Take(offSet)
+                .OrderByDescending(o => o.RegisterTime).Skip(offSet).Take(take)
                 .ToListAsync();
 
             var dCompanies = companies.Select(x => x.MapTo<DCompany, Company>()).ToList();

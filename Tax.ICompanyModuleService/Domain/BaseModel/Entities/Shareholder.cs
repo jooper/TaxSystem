@@ -31,8 +31,5 @@ namespace Tax.ICompanyModuleService.Domain.BaseModel.Entities
         public string ElectronicTaxAccount { set; get; } //电子税务局账号
         [StringLength(80)]
         public string ElectronicTaxPwd { set; get; } //电子税务局密码
-
-//        [ForeignKey("CompanyId")] //外键
-//        public virtual Company Company { set; get; } //导航属性  ，一对多关系
     }
 }

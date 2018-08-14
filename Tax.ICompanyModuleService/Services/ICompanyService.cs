@@ -15,7 +15,7 @@ namespace Tax.ICompanyModuleService.Services
 //            ExecutionTimeoutInMilliseconds = 2500, BreakerRequestVolumeThreshold = 3, Injection = @"return  null;", RequestCacheEnabled = false)]
         Task<Company> GetCompanyAsync(int id);
         Task<int> GetAllCountAsync();
-        Task<List<DCompany>> GetCompanysAsync(int pageIndex, int offSet);
+        Task<List<DCompany>> GetCompanysAsync(int offSet, int take);
         Task<int> AddCompnayAsync(DCompany company);
         Task<int> UpdateCompanyAsync(DCompany company);
         Task<bool> AddShareholderAsync(DShareholder shareholder);

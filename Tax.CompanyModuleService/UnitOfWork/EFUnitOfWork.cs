@@ -1,22 +1,20 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.DependencyInjection;
-using Tax.CompanyModuleService.DI;
 using Tax.ICompanyModuleService.Domain.BaseModel;
 
 namespace Tax.CompanyModuleService.UnitOfWork
 {
     public class EfUnitOfWork : IEfUnitOfWork
     {
+        public EfUnitOfWork(EfDbContext context)
+        {
+            Context = context;
+        }
         //        public IEfDbContext
         //            EfDbContextContext = ServiceDiProvider.GetDiProivder().GetService<IEfDbContext>(); //new EfDbContext();
         //        public DbContext Context =>EfDbContextContext as EfDbContext;
 
         public DbContext Context { get; set; }
-        public EfUnitOfWork(EfDbContext context)
-        {
-            Context = context;
-        }
 
         public void RegisterNew<TEntiy>(TEntiy entity) where TEntiy : AggregateRoot
         {
@@ -34,9 +32,12 @@ namespace Tax.CompanyModuleService.UnitOfWork
         public void RegisterModified<TEntiy>(TEntiy entity) where TEntiy : AggregateRoot
         {
             var state = Context.Entry(entity).State;
-            if (state == EntityState.Detached) Context.Set<TEntiy>().Attach(entity);
-            Context.Attach(entity);
-            Context.Entry(entity).State = EntityState.Modified;
+            if (state == EntityState.Detached)
+            {
+                Context.Set<TEntiy>().Attach(entity);
+                Context.Attach(entity);
+                Context.Entry(entity).State = EntityState.Modified;
+            }
 
             IsCommitted = false;
         }
@@ -78,7 +79,5 @@ namespace Tax.CompanyModuleService.UnitOfWork
 
             Context.Dispose();
         }
-
-        
     }
 }
