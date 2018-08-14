@@ -26,10 +26,17 @@ namespace Tax.CompanyModuleService.Services
             return await Task.FromResult(_repository.GetByKey(id));
         }
 
-        public async Task<List<DCompany>> GetCompanysAsync()
+        public async Task<int> GetAllCountAsync()
         {
-            var companies = await _repository.Entities.Where(w => w.IsValied).Include(x => x.Shareholders)
-                .OrderByDescending(o => o.RegisterTime)
+            var count = _repository.Entities.Count(w => w.IsValied);
+            return await Task.FromResult(count);
+        }
+
+        public async Task<List<DCompany>> GetCompanysAsync(int pageIndex, int offSet)
+        {
+            var companies = await _repository.Entities.Where(w => w.IsValied)
+                .Include(x => x.Shareholders)
+                .OrderByDescending(o => o.RegisterTime).Skip(pageIndex).Take(offSet)
                 .ToListAsync();
 
             var dCompanies = companies.Select(x => x.MapTo<DCompany, Company>()).ToList();
