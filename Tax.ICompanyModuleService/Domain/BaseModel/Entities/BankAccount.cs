@@ -9,7 +9,7 @@ namespace Tax.ICompanyModuleService.Domain.BaseModel.Entities
     public class BankAccount:AggregateRoot
     {
         [Key] public int Id { set; get; }
-        public int CompayId { set; get; }
+        public int CompanyId { set; get; }
         [StringLength(100)]
         public string CompanyName { set; get; }
         public AccountType AccountType { set; get; } //账户类型

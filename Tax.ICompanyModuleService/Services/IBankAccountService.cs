@@ -11,8 +11,10 @@ namespace Tax.ICompanyModuleService.Services
     public interface IBankAccountService : IServiceKey
     {
         Task<int> GetCountAsync();
-        Task<List<BankAccount>> GetBandAccountsAsync(int offSet, int take);
+        Task<List<DBankAccountItem>> GetBandAccountsAsync(int offSet, int take);
         Task<int> AddBankAccountAsync(DBankAccount bankAccount);
         Task<int> UpdateBankAccountAsync(DBankAccount bankAccount);
+
+        Task<int> DeleteBankAccountAsync(int id);
     }
 }

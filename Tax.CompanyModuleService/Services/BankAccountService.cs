@@ -27,16 +27,18 @@ namespace Tax.CompanyModuleService.Services
             return await Task.FromResult(count);
         }
 
-        public async Task<List<BankAccount>> GetBandAccountsAsync(int offSet, int take)
+        public async Task<List<DBankAccountItem>> GetBandAccountsAsync(int offSet, int take)
+
         {
             var bankEntities = _bankAccountRespository.Entities.OrderByDescending(o => o.UpdateTime)
                 .Where(w => w.IsValied)
-                .GroupBy(g => g.CompayId).Select(x => new
+                .GroupBy(g => g.CompanyId).Select(x => new DBankAccountItem
                 {
                     CompanyId = x.Key,
-                    Account = x.Select(w => new BankAccount
+                    Accounts = x.Select(w => new DBankAccount
                     {
-                        CompayId = w.CompayId,
+                        Id=w.Id,
+                        CompanyId = w.CompanyId,
                         OpenBankName = w.OpenBankName,
                         CompanyName = w.CompanyName,
                         AccountType = w.AccountType,
@@ -45,16 +47,11 @@ namespace Tax.CompanyModuleService.Services
                         LinkManPhone = w.LinkManPhone,
                         State = w.State,
                         SealExplation = w.SealExplation
-                    })
+                    }).ToList()
                 });
 
-            var ddd = await bankEntities.Skip(offSet).Take(take).ToListAsync();
-
-
-            var companies = await _bankAccountRespository.Entities.Where(w => w.IsValied)
-                .OrderByDescending(o => o.UpdateTime).Skip(offSet).Take(take)
-                .ToListAsync();
-            return companies;
+            var resultAccountItems = await bankEntities.Skip(offSet).Take(take).ToListAsync();
+            return resultAccountItems;
         }
 
         public async Task<int> AddBankAccountAsync(DBankAccount bankAccount)
@@ -68,6 +65,16 @@ namespace Tax.CompanyModuleService.Services
         {
             var entity = bankAccount.MapTo<BankAccount, DBankAccount>();
             var result = _bankAccountRespository.Update(entity);
+            return await Task.FromResult(result);
+        }
+
+        public async Task<int> DeleteBankAccountAsync(int id)
+        {
+            var bankAccount = _bankAccountRespository.Find(x => x.Id == id).FirstOrDefault();
+            if (bankAccount == null)
+                return await Task.FromResult(0);
+            bankAccount.IsValied = false;
+            var result = _bankAccountRespository.Update(bankAccount);
             return await Task.FromResult(result);
         }
     }
