@@ -21,6 +21,12 @@ namespace Tax.CompanyModuleService.Services
             _customerRepository = customerRepository;
         }
 
+        public Task<Customer> GetCustomerByIdAsync(int id)
+        {
+            var customer = _customerRepository.GetByKey(id);
+            return Task.FromResult(customer);
+        }
+
         public async Task<int> GetAllCustomerCountAsync()
         {
             var count = _customerRepository.Entities.Count(w => w.IsValied);
@@ -29,12 +35,6 @@ namespace Tax.CompanyModuleService.Services
 
         public async Task<IList<Customer>> GetCustomersAsync(int offSet, int take)
         {
-//            var entityCustomers = from n in _customerRepository.Entities
-//                group n by n.Name
-//                into g
-//                select new {name = g.Key, a = g.Select(x => x)};
-
-
             var companies = await _customerRepository.Entities.Where(w => w.IsValied)
                 .OrderByDescending(o => o.UpdateTime).Skip(offSet).Take(take)
                 .ToListAsync();

@@ -1,4 +1,4 @@
-﻿namespace Tax.ICompanyModuleService.Domain.Entities.Enums
+﻿namespace Tax.ICompanyModuleService.Domain.BaseModel.Enums
 {
     //账户类型
     public enum TaxpayerType

@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using ProtoBuf;
 using Tax.ICompanyModuleService.Domain.BaseModel.Entities;
-using Tax.ICompanyModuleService.Domain.Entities;
+
 
 namespace Tax.ICompanyModuleService.Domain.BaseModel.DTO
 {

@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using Tax.ICompanyModuleService.Domain.Entities;
-using Tax.ICompanyModuleService.Domain.Entities.Enums;
+using Tax.ICompanyModuleService.Domain.BaseModel.Enums;
+
 
 namespace Tax.ICompanyModuleService.Domain.BaseModel.Entities
 {

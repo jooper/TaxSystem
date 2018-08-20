@@ -4,7 +4,7 @@ using Surging.Core.CPlatform.Ioc;
 using Surging.Core.CPlatform.Runtime.Server.Implementation.ServiceDiscovery.Attributes;
 using Tax.ICompanyModuleService.Domain.BaseModel.DTO;
 using Tax.ICompanyModuleService.Domain.BaseModel.Entities;
-using Tax.ICompanyModuleService.Domain.Entities;
+
 
 namespace Tax.ICompanyModuleService.Services
 {

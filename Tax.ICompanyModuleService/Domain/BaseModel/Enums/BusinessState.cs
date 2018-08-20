@@ -1,4 +1,4 @@
-﻿namespace Tax.ICompanyModuleService.Domain.Entities.Enums
+﻿namespace Tax.ICompanyModuleService.Domain.BaseModel.Enums
 {
     //工商状态  todo
     public enum BusinessState

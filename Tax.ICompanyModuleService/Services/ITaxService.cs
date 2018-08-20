@@ -8,13 +8,11 @@ using Tax.ICompanyModuleService.Domain.BaseModel.Entities;
 namespace Tax.ICompanyModuleService.Services
 {
     [ServiceBundle("api/{Service}")]
-    public interface ICustomerService : IServiceKey
+    public interface ITaxService : IServiceKey
     {
-        Task<Customer> GetCustomerByIdAsync(int id);
-        Task<int> GetAllCustomerCountAsync();
-        Task<IList<Customer>> GetCustomersAsync(int offSet, int take);
-        Task<int> AddCustomerAsync(DCustomer customer);
-        Task<int> UpdateCustomerAsync(DCustomer customer);
-        Task<int> DeleteCustomerAsync(int id);
+        Task<int> AddTaxAsync(DTaxList customer);
+        Task<List<TaxList>> GetTaxListAsync(int offSet, int take);
+        Task<int> UpdateAsync(DTaxList model);
+        Task<int> DeleteAsync(int id);
     }
 }

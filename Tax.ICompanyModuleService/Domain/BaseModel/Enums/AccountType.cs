@@ -1,4 +1,4 @@
-﻿namespace Tax.ICompanyModuleService.Domain.Entities.Enums
+﻿namespace Tax.ICompanyModuleService.Domain.BaseModel.Enums
 {
     public enum AccountType
     {

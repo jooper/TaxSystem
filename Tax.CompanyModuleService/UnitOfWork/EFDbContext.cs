@@ -22,12 +22,11 @@ namespace Tax.CompanyModuleService.UnitOfWork
         public DbSet<Role> Roles { set; get; }
         public DbSet<RolePower> RolePowers { set; get; }
 
+        public DbSet<TaxList> TaxLists { set; get; }
         //private DbContextOptions options = new DbContextOptionsBuilder().UseSqlite(DefaultSqlConnectionString).Options;
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-
-
             //            var defaultcon = Configuration.GetConnectionString("DefaultConnection");
             //            var devcon = Configuration["ConnectionStrings:DevConnection"];
             optionsBuilder.UseSqlServer(DefaultSqlConnectionString,
@@ -35,7 +34,6 @@ namespace Tax.CompanyModuleService.UnitOfWork
                 .UseQueryTrackingBehavior(QueryTrackingBehavior.NoTracking);
 //            optionsBuilder.UseLazyLoadingProxies();
 
-  
 
             base.OnConfiguring(optionsBuilder);
         }
@@ -43,7 +41,6 @@ namespace Tax.CompanyModuleService.UnitOfWork
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-
 //            modelBuilder.Entity<Company>().HasMany(m => m.Shareholders).WithOne(p => p.Company)
 //                .HasForeignKey(p => p.CompanyId);
 
@@ -69,7 +66,5 @@ namespace Tax.CompanyModuleService.UnitOfWork
 
             //.WithMany(x => x.CompanyCities).HasForeignKey(x => x.CompanyId);
         }
-
-
     }
 }
