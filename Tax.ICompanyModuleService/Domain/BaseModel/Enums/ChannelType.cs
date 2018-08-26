@@ -1,9 +1,8 @@
 ﻿namespace Tax.ICompanyModuleService.Domain.BaseModel.Enums
 {
-    public enum TaxType
+    public enum ChannelType
     {
-       Common,
-       Spspecific,
-        UnKnown
+        Self, //自开
+        Other //代开
     }
 }

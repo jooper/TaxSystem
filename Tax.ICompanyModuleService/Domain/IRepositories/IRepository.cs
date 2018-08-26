@@ -21,6 +21,7 @@ namespace Tax.ICompanyModuleService.Domain.IRepositories
         int Delete(TEntity entity);
         int Delete(IEnumerable<TEntity> entities);
         int Update(TEntity entity);
+        int Update(IEnumerable<TEntity> entities);
         TEntity GetByKey(object key);
         bool Exist(object key);
         bool Exist(TEntity ent);

@@ -55,6 +55,7 @@ namespace Tax.CompanyModuleService.Domain.Respositories
             return ent != null;
         }
 
+
         public virtual TEntity GetByKey(object key)
         {
             return _unitOfWork.Context.Set<TEntity>().Find(key);
@@ -82,6 +83,16 @@ namespace Tax.CompanyModuleService.Domain.Respositories
         public virtual int Update(TEntity entity)
         {
             _unitOfWork.RegisterModified(entity);
+            return _unitOfWork.Commit();
+        }
+
+        public int Update(IEnumerable<TEntity> entities)
+        {
+            foreach (var entity in entities)
+            {
+                _unitOfWork.RegisterModified(entity);
+            }
+
             return _unitOfWork.Commit();
         }
 

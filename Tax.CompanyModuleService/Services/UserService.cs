@@ -16,8 +16,8 @@ namespace Tax.CompanyModuleService.Services
     [ModuleName("User")]
     public class UserService : ProxyServiceBase, IUserService
     {
-        private readonly IUserRespository _userRespository;
         private readonly IRoleRespository _roleRespository;
+        private readonly IUserRespository _userRespository;
 
         public UserService(UserRespository userRespository, RoleRespository roleRespository)
         {

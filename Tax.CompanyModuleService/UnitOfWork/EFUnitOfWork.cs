@@ -34,11 +34,16 @@ namespace Tax.CompanyModuleService.UnitOfWork
             var state = Context.Entry(entity).State;
             if (state == EntityState.Detached)
             {
-                Context.Set<TEntiy>().Attach(entity);
-                Context.Attach(entity);
-                Context.Entry(entity).State = EntityState.Modified;
+                //                Context.Entry(entity).CurrentValues.SetValues(entity);
+                //                Context.Entry<TEntiy>(entity).CurrentValues.SetValues(entity);
+                //先撤销跟踪
+                Context.Entry(entity).State = EntityState.Detached; //把当前实体从上下文中detach掉，否则在Update方法中无法更新
+//                Context.Set<TEntiy>().Attach(entity);
+                entity.UpdateTime = DateTime.Now;
+                Context.ChangeTracker.TrackGraph(entity, e => e.Entry.State = EntityState.Detached);
             }
 
+            Context.Entry(entity).State = EntityState.Modified;
             IsCommitted = false;
         }
 
