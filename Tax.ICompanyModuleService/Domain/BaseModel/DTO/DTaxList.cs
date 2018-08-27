@@ -4,6 +4,16 @@ namespace Tax.ICompanyModuleService.Domain.BaseModel.DTO
 {
     public class DTaxList : TaxList
     {
+        public new double TaxPercent
+        {
+            set
+            {
+                base.TaxPercent = value;
+                CalcShouldReceiveAccount();
+            }
+            get => base.TaxPercent;
+        }
+
         public new decimal Account
         {
             set
@@ -17,6 +27,7 @@ namespace Tax.ICompanyModuleService.Domain.BaseModel.DTO
             }
             get => base.Account;
         }
+
 
         //实际政府输入时候才能计算差额
         public new decimal RealToGovernmentAccount

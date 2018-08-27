@@ -10,8 +10,13 @@ namespace Tax.CompanyModuleService.UnitOfWork
 
     public class EfDbContext : DbContext, IEfDbContext
     {
+        //        private static readonly string DefaultSqlConnectionString =
+        //            @"Server=192.168.200.200;database=Tax;uid=sa;pwd=123456aA";
+
         private static readonly string DefaultSqlConnectionString =
-            @"Server=192.168.200.200;database=Tax;uid=sa;pwd=123456aA";
+            @"Server=bds245005164.my3w.com;database=bds245005164_db;uid=bds245005164;pwd=ALYlyj123456";
+
+        
 
         public DbSet<Company> Companies { set; get; }
         public DbSet<Shareholder> Shareholders { set; get; }

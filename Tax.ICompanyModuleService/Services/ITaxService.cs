@@ -13,8 +13,9 @@ namespace Tax.ICompanyModuleService.Services
     public interface ITaxService : IServiceKey
     {
         Task<int> AddTaxAsync(DTaxList model);
+        Task<int> GetAllCountAsync();
 
-        Task<List<TaxList>> GetTaxListAsync(int offSet, int take, DateTime dateTime, int linkManId, TaxType type,
+        Task<List<TaxList>> GetTaxListAsync(int offSet, int take, DateTime dateTime, int linkManId, int companyId, TaxType type,
             TaxState state);
 
         Task<int> UpdateAsync(DTaxList model);

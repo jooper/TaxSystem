@@ -19,6 +19,6 @@ namespace Tax.ICompanyModuleService.Domain.BaseModel.Enums
         /// <summary>
         /// 发票税
         /// </summary>
-        public static double InvoiceTaxPercent { set; get; } = 0.03;
+        public static double InvoiceTaxPercent { set; get; } = 3;
     }
 }

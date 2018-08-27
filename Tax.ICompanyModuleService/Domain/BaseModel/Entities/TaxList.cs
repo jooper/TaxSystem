@@ -49,8 +49,9 @@ namespace Tax.ICompanyModuleService.Domain.BaseModel.Entities
             if (Account == 0)
                 return 0;
             //（价税合计*发票税）/ （1+发票税）
-            var total = decimal.Multiply(Account, (decimal)TaxTypeVal.InvoiceTaxPercent); //（价税合计*发票税）
-            var baseTotal = 1 + TaxTypeVal.InvoiceTaxPercent; // （1+发票税）
+            var invoiceTaxPercent = InvoiceTax / 100;
+            var total = decimal.Multiply(Account, (decimal)invoiceTaxPercent); //（价税合计*发票税）
+            var baseTotal = 1 + invoiceTaxPercent; // （1+发票税）
             var result = decimal.Divide(total, (decimal) baseTotal);
             ValueAddedTax = result;
             return result;
@@ -94,7 +95,7 @@ namespace Tax.ICompanyModuleService.Domain.BaseModel.Entities
         public decimal CalcShouldReceiveAccount()
         {
             //税率*价税合计
-            var result = decimal.Multiply(Account, (decimal) TaxPercent);
+            var result = decimal.Multiply(Account, (decimal) TaxPercent/100);
             ShouldReceiveAccount = result;
             return result;
         }
