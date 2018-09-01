@@ -14,39 +14,39 @@ namespace Tax.CompanyModuleService.Domain.Respositories
     public class EfBaseRespository<TEntity> : BaseRepository, IRepository<TEntity>
         where TEntity : AggregateRoot
     {
-        public readonly IEfUnitOfWork _unitOfWork = ServiceDiProvider.GetDiProivder().GetService<IEfUnitOfWork>();
+        public readonly IEfUnitOfWork UnitOfWork = ServiceDiProvider.GetDiProivder().GetService<IEfUnitOfWork>();
 
-        public virtual IQueryable<TEntity> Entities => _unitOfWork.Context.Set<TEntity>();
+        public virtual IQueryable<TEntity> Entities => UnitOfWork.Context.Set<TEntity>();
 
         public virtual int Delete(object id)
         {
-            var entity = _unitOfWork.Context.Set<TEntity>().Find(id);
+            var entity = UnitOfWork.Context.Set<TEntity>().Find(id);
             if (entity == null)
                 return 0;
 
-            _unitOfWork.RegisterDeleted(entity);
-            return _unitOfWork.Commit();
+            UnitOfWork.RegisterDeleted(entity);
+            return UnitOfWork.Commit();
         }
 
         public virtual int Delete(TEntity entity)
         {
-            _unitOfWork.RegisterDeleted(entity);
-            return _unitOfWork.Commit();
+            UnitOfWork.RegisterDeleted(entity);
+            return UnitOfWork.Commit();
         }
 
         public virtual int Delete(IEnumerable<TEntity> entities)
         {
             foreach (var entity in entities)
             {
-                _unitOfWork.RegisterDeleted(entity);
+                UnitOfWork.RegisterDeleted(entity);
             }
 
-            return _unitOfWork.Commit();
+            return UnitOfWork.Commit();
         }
 
         public virtual bool Exist(TEntity ent)
         {
-            return _unitOfWork.Context.Set<TEntity>().Contains(ent);
+            return UnitOfWork.Context.Set<TEntity>().Contains(ent);
         }
 
         public virtual bool Exist(object key)
@@ -58,15 +58,15 @@ namespace Tax.CompanyModuleService.Domain.Respositories
 
         public virtual TEntity GetByKey(object key)
         {
-            return _unitOfWork.Context.Set<TEntity>().Find(key);
+            return UnitOfWork.Context.Set<TEntity>().Find(key);
         }
 
         public virtual int Insert(TEntity entity)
         {
             if (Exist(entity))
                 return 0;
-            _unitOfWork.RegisterNew(entity);
-            return _unitOfWork.Commit();
+            UnitOfWork.RegisterNew(entity);
+            return UnitOfWork.Commit();
         }
 
         public virtual int Isert(IEnumerable<TEntity> entities)
@@ -74,46 +74,46 @@ namespace Tax.CompanyModuleService.Domain.Respositories
             foreach (var entity in entities)
             {
                 if (!Exist(entity))
-                    _unitOfWork.RegisterNew(entity);
+                    UnitOfWork.RegisterNew(entity);
             }
 
-            return _unitOfWork.Commit();
+            return UnitOfWork.Commit();
         }
 
         public virtual int Update(TEntity entity)
         {
-            _unitOfWork.RegisterModified(entity);
-            return _unitOfWork.Commit();
+            UnitOfWork.RegisterModified(entity);
+            return UnitOfWork.Commit();
         }
 
         public int Update(IEnumerable<TEntity> entities)
         {
             foreach (var entity in entities)
             {
-                _unitOfWork.RegisterModified(entity);
+                UnitOfWork.RegisterModified(entity);
             }
 
-            return _unitOfWork.Commit();
+            return UnitOfWork.Commit();
         }
 
 
         public virtual IQueryable<TEntity> Find(Expression<Func<TEntity, bool>> express)
         {
             Func<TEntity, bool> lamada = express.Compile();
-            return _unitOfWork.Context.Set<TEntity>().Where(lamada).AsQueryable<TEntity>();
+            return UnitOfWork.Context.Set<TEntity>().Where(lamada).AsQueryable<TEntity>();
         }
 
 
         public virtual int Delete(Expression<Func<TEntity, bool>> express)
         {
             Func<TEntity, bool> lamada = express.Compile();
-            var lstEntity = _unitOfWork.Context.Set<TEntity>().Where(lamada);
+            var lstEntity = UnitOfWork.Context.Set<TEntity>().Where(lamada);
             foreach (var entity in lstEntity)
             {
-                _unitOfWork.RegisterDeleted(entity);
+                UnitOfWork.RegisterDeleted(entity);
             }
 
-            return _unitOfWork.Commit();
+            return UnitOfWork.Commit();
         }
     }
 }

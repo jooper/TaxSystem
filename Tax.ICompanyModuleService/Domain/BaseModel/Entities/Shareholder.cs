@@ -8,7 +8,7 @@ namespace Tax.ICompanyModuleService.Domain.BaseModel.Entities
     //股东--值对象，不需要唯一标识，通过构造函数初始化值
     public class Shareholder : BaseEntity
     {
-        [Key] public int Id { set; get; }
+        [Key] public new int Id { set; get; }
         public int CompanyId { set; get; }
         [StringLength(10)]
         public string Name { set; get; }

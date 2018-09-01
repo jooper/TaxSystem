@@ -11,7 +11,7 @@ namespace Tax.CompanyModuleService.Domain.Respositories
     {
         public async Task<List<Role>> GetRolesAsync(int userId)
         {
-            var userRoles = _unitOfWork.Context.Set<UserRole>().Where(w => w.UserId == userId && w.IsValied);
+            var userRoles = UnitOfWork.Context.Set<UserRole>().Where(w => w.UserId == userId && w.IsValied);
             var roles = Entities.Where(w => userRoles.Select(x => x.RoleId).Contains(w.Id)).Distinct();
             return await Task.FromResult(roles.ToList());
         }

@@ -12,7 +12,8 @@ namespace Tax.ICompanyModuleService.Domain.BaseModel.DTO
     [ProtoContract]
     public class DCompany: BaseDto
     {
-        [ProtoMember(1)] [CacheKey(1)] public int CompanyId { set; get; }
+        // [CacheKey(1)] 
+        [ProtoMember(1)]public int CompanyId { set; get; }
 
         [ProtoMember(2)]
         [Required]

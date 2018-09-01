@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using Tax.ICompanyModuleService.Domain.BaseModel.Enums;
 
 namespace Tax.ICompanyModuleService.Domain.BaseModel.Entities
@@ -8,6 +9,7 @@ namespace Tax.ICompanyModuleService.Domain.BaseModel.Entities
     //公司
     public sealed class Company : AggregateRoot
     {
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         [Key] public int CompanyId { set; get; }
         [StringLength(50)]
         public string Name { set; get; }
@@ -26,6 +28,8 @@ namespace Tax.ICompanyModuleService.Domain.BaseModel.Entities
         public string LegalPerson { set; get; } //法人
         [StringLength(30)]
         public string LegalPersonPhone { set; get; }
+        [StringLength(100)]
+        public string HomeTownAddr { set; get; }//乡镇
         public ICollection<Shareholder> Shareholders { set; get; } = new List<Shareholder>();
     }
 }

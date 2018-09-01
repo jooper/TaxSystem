@@ -10,13 +10,16 @@ namespace Tax.CompanyModuleService.UnitOfWork
 
     public class EfDbContext : DbContext, IEfDbContext
     {
+//        private static readonly string DefaultSqlConnectionString =
+//            @"Server=192.168.200.200;database=Tax;uid=sa;pwd=123456aA";
+
         //        private static readonly string DefaultSqlConnectionString =
-        //            @"Server=192.168.200.200;database=Tax;uid=sa;pwd=123456aA";
+        //            @"Server=bds245005164.my3w.com;database=bds245005164_db;uid=bds245005164;pwd=ALYlyj123456";
+
 
         private static readonly string DefaultSqlConnectionString =
-            @"Server=bds245005164.my3w.com;database=bds245005164_db;uid=bds245005164;pwd=ALYlyj123456";
+            @"Server=47.92.85.74;database=Tax;uid=sa;pwd=Sa!@#123#@!";
 
-        
 
         public DbSet<Company> Companies { set; get; }
         public DbSet<Shareholder> Shareholders { set; get; }
@@ -46,15 +49,15 @@ namespace Tax.CompanyModuleService.UnitOfWork
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-//            modelBuilder.Entity<Company>().HasMany(m => m.Shareholders).WithOne(p => p.Company)
-//                .HasForeignKey(p => p.CompanyId);
+            //            modelBuilder.Entity<Company>().HasMany(m => m.Shareholders).WithOne(p => p.Company)
+            //                .HasForeignKey(p => p.CompanyId);
 
-//            modelBuilder.Entity<Shareholder>()
-//                .HasOne(p => p.Company)
-//                .WithMany(b => b.Shareholders);
+            //            modelBuilder.Entity<Shareholder>()
+            //                .HasOne(p => p.Company)
+            //                .WithMany(b => b.Shareholders);
 
-//            modelBuilder.Entity<Post>().HasOne("Body").WithOne("Post").HasForeignKey("PostId");
-//            modelBuilder.Entity<Body>().HasOne("Post").WithOne("Body").HasForeignKey("Id");
+            //            modelBuilder.Entity<Post>().HasOne("Body").WithOne("Post").HasForeignKey("PostId");
+            //            modelBuilder.Entity<Body>().HasOne("Post").WithOne("Body").HasForeignKey("Id");
 
 
             //            modelBuilder.Entity<Company>()
@@ -67,9 +70,12 @@ namespace Tax.CompanyModuleService.UnitOfWork
 
             //            Database.SetInitializer<SchoolDbContext>(null);//忽略映射
 
-            //            modelBuilder.Entity<Company>().HasMany(x => x.Shareholders);
+                        modelBuilder.Entity<Company>().HasMany(x => x.Shareholders);
 
             //.WithMany(x => x.CompanyCities).HasForeignKey(x => x.CompanyId);
+
+ 
+           
         }
     }
 }
