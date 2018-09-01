@@ -1,9 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.ChangeTracking;
 using Tax.ICompanyModuleService.Domain.BaseModel;
 using Tax.ICompanyModuleService.Domain.BaseModel.Entities;
 
@@ -107,29 +105,6 @@ namespace Tax.CompanyModuleService.UnitOfWork
             IsCommitted = false;
         }
 
-
-        private void DisplayStates()
-        {
-            var entries = Context.ChangeTracker.Entries();
-            foreach (var entry in entries)
-            {
-                Console.WriteLine($"Entity: {entry.Entity.GetType().Name},State: {entry.State.ToString()}");
-            }
-        }
-
-        public void DetachAllEntities()
-        {
-            var entries = Context.ChangeTracker.Entries();
-            var entityEntries = entries.Where(e => e.State == EntityState.Added ||
-//                                                   e.State == EntityState.Unchanged ||
-                                                   e.State == EntityState.Modified ||
-                                                   e.State == EntityState.Deleted);
-            foreach (var entity in entityEntries)
-            {
-                Context.Entry(entity.Entity).State = EntityState.Detached;
-            }
-        }
-
         public void RegisterDeleted<TEntiy>(TEntiy entity) where TEntiy : AggregateRoot
         {
             Context.Entry(entity).State = EntityState.Deleted;
@@ -169,6 +144,24 @@ namespace Tax.CompanyModuleService.UnitOfWork
 
             Context.Dispose();
         }
+
+
+        private void DisplayStates()
+        {
+            var entries = Context.ChangeTracker.Entries();
+            foreach (var entry in entries)
+                Console.WriteLine($"Entity: {entry.Entity.GetType().Name},State: {entry.State.ToString()}");
+        }
+
+        public void DetachAllEntities()
+        {
+            var entries = Context.ChangeTracker.Entries();
+            var entityEntries = entries.Where(e => e.State == EntityState.Added ||
+//                                                   e.State == EntityState.Unchanged ||
+                                                   e.State == EntityState.Modified ||
+                                                   e.State == EntityState.Deleted);
+            foreach (var entity in entityEntries) Context.Entry(entity.Entity).State = EntityState.Detached;
+        }
     }
 
     public static class DbContextEx
@@ -176,15 +169,12 @@ namespace Tax.CompanyModuleService.UnitOfWork
         public static void DetachLocal<T>(this DbContext context, T t, Expression<Func<T, bool>> express)
             where T : BaseEntity
         {
-            Func<T, bool> lamada = express.Compile();
+            var lamada = express.Compile();
 
             var local = context.Set<T>()
                 .Local.Where(lamada)
                 .FirstOrDefault();
-            if (local != null)
-            {
-                context.Entry(local).State = EntityState.Detached;
-            }
+            if (local != null) context.Entry(local).State = EntityState.Detached;
 
             context.Entry(t).State = EntityState.Modified;
         }
@@ -195,10 +185,7 @@ namespace Tax.CompanyModuleService.UnitOfWork
             var local = context.Set<T>()
                 .Local
                 .FirstOrDefault(entry => entry.Id.Equals(entryId));
-            if (local != null)
-            {
-                context.Entry(local).State = EntityState.Detached;
-            }
+            if (local != null) context.Entry(local).State = EntityState.Detached;
 
             context.Entry(t).State = EntityState.Modified;
         }

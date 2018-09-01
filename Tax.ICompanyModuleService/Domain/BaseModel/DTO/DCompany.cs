@@ -36,6 +36,8 @@ namespace Tax.ICompanyModuleService.Domain.BaseModel.DTO
         [ProtoMember(10)] public string LegalPerson { set; get; } //法人
 
         [ProtoMember(11)] public string LegalPersonPhone { set; get; }
+        [StringLength(100)]
+        public string HomeTownAddr { set; get; }//乡镇
 
         [ProtoMember(12)] public virtual List<Shareholder> Shareholders { set; get; }
     }
