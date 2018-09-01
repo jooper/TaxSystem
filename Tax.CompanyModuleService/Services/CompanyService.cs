@@ -34,13 +34,13 @@ namespace Tax.CompanyModuleService.Services
 
         public async Task<List<DCompany>> GetCompanysAsync(int offSet, int take)
         {
-            var companies =  _repository.Entities.Where(w => w.IsValied).AsNoTracking()
+            var companies = _repository.Entities.Where(w => w.IsValied).AsNoTracking()
                 .Include(x => x.Shareholders)
                 .OrderByDescending(o => o.RegisterTime).Skip(offSet).Take(take)
                 .ToList();
 
             var dCompanies = companies.Select(x => x.MapTo<DCompany, Company>()).ToList();
-            return await  Task.FromResult(dCompanies);
+            return await Task.FromResult(dCompanies);
         }
 
         public async Task<int> AddCompnayAsync(DCompany company)
@@ -69,6 +69,7 @@ namespace Tax.CompanyModuleService.Services
             {
                 shareholderEntity
             };
+            company.Id = company.CompanyId;
             _repository.Update(company);
             return true;
         }

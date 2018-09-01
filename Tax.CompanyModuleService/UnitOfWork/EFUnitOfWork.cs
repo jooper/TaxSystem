@@ -102,6 +102,7 @@ namespace Tax.CompanyModuleService.UnitOfWork
             //
             //            Context.Entry(entity).State = EntityState.Modified;
             Context.DetachLocal(entity, x => x.Id == entity.Id);
+//            Context.Update(entity);
             IsCommitted = false;
         }
 
@@ -174,8 +175,14 @@ namespace Tax.CompanyModuleService.UnitOfWork
             var local = context.Set<T>()
                 .Local.Where(lamada)
                 .FirstOrDefault();
-            if (local != null) context.Entry(local).State = EntityState.Detached;
+            if (local != null)
+            {
+//                context.ChangeTracker.TrackGraph(local, e => e.Entry.State = EntityState.Detached);
+                context.Entry(local).State = EntityState.Detached;
+//                context.Attach(t);
+            }
 
+            //            context.ChangeTracker.TrackGraph(t, e => e.Entry.State = EntityState.Modified);
             context.Entry(t).State = EntityState.Modified;
         }
 

@@ -49,6 +49,7 @@ namespace Tax.CompanyModuleService.UnitOfWork
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+
             //            modelBuilder.Entity<Company>().HasMany(m => m.Shareholders).WithOne(p => p.Company)
             //                .HasForeignKey(p => p.CompanyId);
 
@@ -70,7 +71,7 @@ namespace Tax.CompanyModuleService.UnitOfWork
 
             //            Database.SetInitializer<SchoolDbContext>(null);//忽略映射
 
-                        modelBuilder.Entity<Company>().HasMany(x => x.Shareholders);
+            modelBuilder.Entity<Company>().HasMany(x => x.Shareholders);
 
             //.WithMany(x => x.CompanyCities).HasForeignKey(x => x.CompanyId);
 
