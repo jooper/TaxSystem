@@ -70,7 +70,7 @@ namespace Tax.CompanyModuleService.Services
 
         public async Task<int> DeleteBankAccountAsync(int id)
         {
-            var bankAccount = _bankAccountRespository.Find(x => x.Id == id).FirstOrDefault();
+            var bankAccount = _bankAccountRespository.Find(x => x.Id == id).AsNoTracking().FirstOrDefault();
             if (bankAccount == null)
                 return await Task.FromResult(0);
             bankAccount.IsValied = false;

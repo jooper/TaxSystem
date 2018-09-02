@@ -2,7 +2,7 @@
 {
     public enum AccountType
     {
-        Noraml,//一般用户 
-        Stadard//基恩用户
+        Stadard,//基恩用户
+        Noraml//一般用户 
     }
 }
