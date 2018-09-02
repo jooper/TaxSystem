@@ -20,5 +20,8 @@ namespace Tax.ICompanyModuleService.Services
         Task<int> UpdateCompanyAsync(DCompany company);
         Task<bool> AddShareholderAsync(DShareholder shareholder);
         Task<int> DeleteCompanyAsync(int companyId);
+
+        Task<int> UpdateShareholderAsync(DShareholder shareholder);
+        Task<int> DeleteShareholderAsync(int id);
     }
 }

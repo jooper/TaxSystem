@@ -1,4 +1,5 @@
 ﻿using System.Threading.Tasks;
+using Tax.ICompanyModuleService.Domain.BaseModel.DTO;
 using Tax.ICompanyModuleService.Domain.BaseModel.Entities;
 
 namespace Tax.ICompanyModuleService.Domain.IRepositories
@@ -9,5 +10,7 @@ namespace Tax.ICompanyModuleService.Domain.IRepositories
     public interface ICompanyRespository : IRepository<Company>
     {
         Task<string> GetCompanyNmae();
+        Task<int> DeleteShareholderAsync(int id);
+        Task<int> UpdateShareholderAsync(Shareholder model);
     }
 }

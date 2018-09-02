@@ -34,12 +34,45 @@ namespace Tax.CompanyModuleService.Services
 
         public async Task<List<DCompany>> GetCompanysAsync(int offSet, int take)
         {
-            var companies = _repository.Entities.Where(w => w.IsValied).AsNoTracking()
-                .Include(x => x.Shareholders)
-                .OrderByDescending(o => o.RegisterTime).Skip(offSet).Take(take)
-                .ToList();
+            //            var companies = _repository.Entities.Where(w => w.IsValied).AsNoTracking()
+            //                .Include(x => x.Shareholders)
+            //                .OrderByDescending(o => o.RegisterTime).Skip(offSet).Take(take)
+            //                .ToList();
+                        var companies = _repository.Entities.Where(w => w.IsValied).AsNoTracking()
+                            .Include(x => x.Shareholders)
+                            .Select(x => new {entities = x, shareholders = x.Shareholders.Where(w => w.IsValied)})
+                            .Select(t => new Company
+                            {
+                                BusinessState = t.entities.BusinessState,
+                                CompanyId = t.entities.CompanyId,
+                                HomeTownAddr = t.entities.HomeTownAddr,
+                                Id = t.entities.Id,
+                                LegalPerson = t.entities.LegalPerson,
+                                LegalPersonPhone = t.entities.LegalPersonPhone,
+                                LinkMan = t.entities.LinkMan,
+                                LinkManPhone = t.entities.LinkManPhone,
+                                Name = t.entities.Name,
+                                RegisterCapital = t.entities.RegisterCapital,
+                                RegisterTime = t.entities.RegisterTime,
+                                TaxNumber = t.entities.TaxNumber,
+                                CreateUserId = t.entities.CreateUserId,
+                                UpdateTime = t.entities.UpdateTime,
+                                UpdateUserId = t.entities.UpdateUserId,
+                                Addr = t.entities.Addr,
+                                Shareholders = t.shareholders.ToList(),
+                            })
+                            .OrderByDescending(o => o.RegisterTime).Skip(offSet).Take(take)
+                            .ToList();
 
-            var dCompanies = companies.Select(x => x.MapTo<DCompany, Company>()).ToList();
+//
+//            var companies = _repository.Entities.Where(w => w.IsValied).AsNoTracking()
+//                .Include(x => x.Shareholders)
+//                .Select(x => new { entities = x.MapTo<DCompany,Company>(), shareholders = x.Shareholders.Where(w => w.IsValied) })
+//                .Select(()=> { return Company(); })
+//                .OrderByDescending(o => o.RegisterTime).Skip(offSet).Take(take)
+//                .ToList();
+
+            var dCompanies =companies.Select(x => x.MapTo<DCompany, Company>()).ToList();
             return await Task.FromResult(dCompanies);
         }
 
@@ -80,6 +113,33 @@ namespace Tax.CompanyModuleService.Services
             companyEntity.IsValied = false;
             var result = _repository.Update(companyEntity);
             return await Task.FromResult(result);
+        }
+
+        public async Task<int> UpdateShareholderAsync(DShareholder shareholder)
+        {
+//            var company = await GetCompanyAsync(model.CompanyId);
+//            if (company == null)
+//                throw new Exception("公司信息不存在！" + model.CompanyId);
+//
+            var entity = shareholder.MapTo<Shareholder, DShareholder>();
+            
+//
+//            company.Shareholders = new List<Shareholder>
+//            {
+//                entity
+//            };
+//
+//
+//            var result = _repository.Update(company);
+
+            var result = await _repository.UpdateShareholderAsync(entity);
+            return await Task.FromResult(result);
+        }
+
+        public async Task<int> DeleteShareholderAsync(int id)
+        {
+            var result = await _repository.DeleteShareholderAsync(id);
+            return result;
         }
     }
 }

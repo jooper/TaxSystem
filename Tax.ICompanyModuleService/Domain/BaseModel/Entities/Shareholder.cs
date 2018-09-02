@@ -20,7 +20,7 @@ namespace Tax.ICompanyModuleService.Domain.BaseModel.Entities
         [StringLength(80)]
         public string RigsterAddr { set; get; }
         [StringLength(10)]
-        public string NationalTaxState { set; get; } //国税状态
+        public string NationalTaxState { set; get; } //国税状态, 0注销，1正常，2黑名单，地税国税合并，这里地税作废
         [StringLength(80)]
         public string NationalTaxLogoffDes { set; get; } //国税注销情况说明
         [StringLength(10)]
