@@ -1,12 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Collections.Immutable;
 using System.Linq;
-using System.Net.NetworkInformation;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
-using Remotion.Linq.Utilities;
-using Surging.Core.CPlatform.EventBus;
 using Surging.Core.CPlatform.Utilities;
 using Surging.Core.ProxyGenerator;
 using Tax.CompanyModuleService.Domain.Respositories;
@@ -67,14 +63,6 @@ namespace Tax.CompanyModuleService.Services
             return await Task.FromResult(result);
         }
 
-        private async Task CalcCustomerTotalTaxAccountAsync(int uid)
-        {
-            var cutomerUserId = uid;
-            var totalAccount = await _taxRespository.CalcCustomerTaxTotalAccountAsync(cutomerUserId);
-            var customerService = ServiceLocator.GetService<ICustomerService>();
-            await customerService.BatchCalcCustomerTotalTaxAccountAsync(new List<(int, decimal)> {(cutomerUserId, totalAccount)});
-        }
-
 
         public async Task<int> BatchUpdateAsync(List<DTaxList> modelsLists)
         {
@@ -91,14 +79,6 @@ namespace Tax.CompanyModuleService.Services
             return await Task.FromResult(result);
         }
 
-        private async Task BatchCalcCustomerTotalTaxAccountAsync(List<DTaxList> modelsLists)
-        {
-            var uids = modelsLists.Select(x => x.LinkManId).Distinct().ToList();
-            var userAccounts = await _taxRespository.BatchCalcCustomerTaxToatalAccountAsync(uids);
-            var customerService = ServiceLocator.GetService<ICustomerService>();
-            await customerService.BatchCalcCustomerTotalTaxAccountAsync(userAccounts);
-        }
-
 
         public async Task<int> DeleteAsync(int id)
         {
@@ -108,6 +88,23 @@ namespace Tax.CompanyModuleService.Services
             result.IsValied = false;
             var update = _taxRespository.Update(result);
             return await Task.FromResult(update);
+        }
+
+        private async Task BatchCalcCustomerTotalTaxAccountAsync(IEnumerable<DTaxList> modelsLists)
+        {
+            var uids = modelsLists.Select(x => x.LinkManId).Distinct().ToList();
+            var userAccounts = await _taxRespository.BatchCalcCustomerTaxToatalAccountAsync(uids);
+            var customerService = ServiceLocator.GetService<ICustomerService>();
+            await customerService.BatchCalcCustomerTotalTaxAccountAsync(userAccounts);
+        }
+
+        private async Task CalcCustomerTotalTaxAccountAsync(int uid)
+        {
+            var cutomerUserId = uid;
+            var totalAccount = await _taxRespository.CalcCustomerTaxTotalAccountAsync(cutomerUserId);
+            var customerService = ServiceLocator.GetService<ICustomerService>();
+            await customerService.BatchCalcCustomerTotalTaxAccountAsync(
+                new List<(int, decimal)> {(cutomerUserId, totalAccount)});
         }
 
 

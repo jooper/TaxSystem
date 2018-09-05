@@ -3,9 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
+using MongoDB.Driver.Core.Misc;
 using Surging.Core.ProxyGenerator;
 using Tax.CompanyModuleService.Domain.Respositories;
 using Tax.CompanyModuleService.Ext;
+using Tax.CompanyModuleService.Uinities;
 using Tax.ICompanyModuleService.Domain.BaseModel.DTO;
 using Tax.ICompanyModuleService.Domain.BaseModel.Entities;
 using Tax.ICompanyModuleService.Services;
@@ -32,37 +34,36 @@ namespace Tax.CompanyModuleService.Services
             return await Task.FromResult(count);
         }
 
-        public async Task<List<DCompany>> GetCompanysAsync(int offSet, int take)
+        public async Task<List<DCompany>> GetCompanysAsync(int offSet, int take, string companyName = "")
         {
-            //            var companies = _repository.Entities.Where(w => w.IsValied).AsNoTracking()
-            //                .Include(x => x.Shareholders)
-            //                .OrderByDescending(o => o.RegisterTime).Skip(offSet).Take(take)
-            //                .ToList();
-                        var companies = _repository.Entities.Where(w => w.IsValied).AsNoTracking()
-                            .Include(x => x.Shareholders)
-                            .Select(x => new {entities = x, shareholders = x.Shareholders.Where(w => w.IsValied)})
-                            .Select(t => new Company
-                            {
-                                BusinessState = t.entities.BusinessState,
-                                CompanyId = t.entities.CompanyId,
-                                HomeTownAddr = t.entities.HomeTownAddr,
-                                Id = t.entities.Id,
-                                LegalPerson = t.entities.LegalPerson,
-                                LegalPersonPhone = t.entities.LegalPersonPhone,
-                                LinkMan = t.entities.LinkMan,
-                                LinkManPhone = t.entities.LinkManPhone,
-                                Name = t.entities.Name,
-                                RegisterCapital = t.entities.RegisterCapital,
-                                RegisterTime = t.entities.RegisterTime,
-                                TaxNumber = t.entities.TaxNumber,
-                                CreateUserId = t.entities.CreateUserId,
-                                UpdateTime = t.entities.UpdateTime,
-                                UpdateUserId = t.entities.UpdateUserId,
-                                Addr = t.entities.Addr,
-                                Shareholders = t.shareholders.ToList(),
-                            })
-                            .OrderByDescending(o => o.RegisterTime).Skip(offSet).Take(take)
-                            .ToList();
+            var companies = _repository.Entities
+                .Where(w => w.IsValied)
+                .AsNoTracking()
+                .Include(x => x.Shareholders)
+                .WhereIf(companyName != string.Empty, w => w.Name.Contains(companyName))
+                .Select(x => new {entities = x, shareholders = x.Shareholders.Where(w => w.IsValied)})
+                .Select(t => new Company
+                {
+                    BusinessState = t.entities.BusinessState,
+                    CompanyId = t.entities.CompanyId,
+                    HomeTownAddr = t.entities.HomeTownAddr,
+                    Id = t.entities.Id,
+                    LegalPerson = t.entities.LegalPerson,
+                    LegalPersonPhone = t.entities.LegalPersonPhone,
+                    LinkMan = t.entities.LinkMan,
+                    LinkManPhone = t.entities.LinkManPhone,
+                    Name = t.entities.Name,
+                    RegisterCapital = t.entities.RegisterCapital,
+                    RegisterTime = t.entities.RegisterTime,
+                    TaxNumber = t.entities.TaxNumber,
+                    CreateUserId = t.entities.CreateUserId,
+                    UpdateTime = t.entities.UpdateTime,
+                    UpdateUserId = t.entities.UpdateUserId,
+                    Addr = t.entities.Addr,
+                    Shareholders = t.shareholders.ToList(),
+                })
+                .OrderByDescending(o => o.RegisterTime).Skip(offSet).Take(take)
+                .ToList();
 
 //
 //            var companies = _repository.Entities.Where(w => w.IsValied).AsNoTracking()
@@ -72,7 +73,7 @@ namespace Tax.CompanyModuleService.Services
 //                .OrderByDescending(o => o.RegisterTime).Skip(offSet).Take(take)
 //                .ToList();
 
-            var dCompanies =companies.Select(x => x.MapTo<DCompany, Company>()).ToList();
+            var dCompanies = companies.Select(x => x.MapTo<DCompany, Company>()).ToList();
             return await Task.FromResult(dCompanies);
         }
 
@@ -122,7 +123,7 @@ namespace Tax.CompanyModuleService.Services
 //                throw new Exception("公司信息不存在！" + model.CompanyId);
 //
             var entity = shareholder.MapTo<Shareholder, DShareholder>();
-            
+
 //
 //            company.Shareholders = new List<Shareholder>
 //            {

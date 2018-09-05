@@ -65,7 +65,7 @@ namespace Tax.CompanyModuleService.Services
             return await Task.FromResult(result);
         }
 
-        public async Task<int> CalcCustomerTotalTaxAccountAsync(List<(int, decimal)> list)
+        public async Task<int> BatchCalcCustomerTotalTaxAccountAsync(List<(int, decimal)> list)
         {
             if (!list.Any())
                 return await Task.FromResult(0);
