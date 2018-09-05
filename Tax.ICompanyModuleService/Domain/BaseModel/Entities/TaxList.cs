@@ -21,7 +21,7 @@ namespace Tax.ICompanyModuleService.Domain.BaseModel.Entities
         [MaxLength(20)] public DateTime? OverTaxDateTime { set; get; } //结算日期可空
         [MaxLength(30)] public decimal Account { set; get; } //金额(价税合计)
         [MaxLength(10)] public double TaxPercent { set; get; } //专票,普票税率
-        [MaxLength(80)] public decimal TaxAccount { set; get; } //税后金额
+        [MaxLength(80)] public decimal TaxAccount { set; get; } //税后金额,已结算金额
         [StringLength(100)] public string Remark { get; set; } //备注
 
         [MaxLength(3)] public ChannelType Channel { set; get; } //渠道

@@ -64,5 +64,18 @@ namespace Tax.CompanyModuleService.Services
             var result = _customerRepository.Update(customer);
             return await Task.FromResult(result);
         }
+
+        public async Task<int> CalcCustomerTotalTaxAccountAsync(List<(int, decimal)> list)
+        {
+            if (!list.Any())
+                return await Task.FromResult(0);
+            var uids = list.Select(x => x.Item1).Distinct();
+            var customers = _customerRepository.Find(x => uids.Contains(x.Id) && x.IsValied).ToList();
+
+            customers.ForEach(x => { x.TotalAmmout = (double) list.FirstOrDefault(f => f.Item1 == x.Id).Item2; });
+
+            var result = _customerRepository.Update(customers);
+            return  result;
+        }
     }
 }

@@ -16,5 +16,7 @@ namespace Tax.ICompanyModuleService.Services
         Task<int> AddCustomerAsync(DCustomer customer);
         Task<int> UpdateCustomerAsync(DCustomer customer);
         Task<int> DeleteCustomerAsync(int id);
+        Task<int> BatchCalcCustomerTotalTaxAccountAsync(List<(int,decimal)> list);
+        
     }
 }

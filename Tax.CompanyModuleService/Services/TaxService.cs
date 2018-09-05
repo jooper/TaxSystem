@@ -2,8 +2,12 @@
 using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Linq;
+using System.Net.NetworkInformation;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
+using Remotion.Linq.Utilities;
+using Surging.Core.CPlatform.EventBus;
+using Surging.Core.CPlatform.Utilities;
 using Surging.Core.ProxyGenerator;
 using Tax.CompanyModuleService.Domain.Respositories;
 using Tax.CompanyModuleService.Ext;
@@ -58,7 +62,17 @@ namespace Tax.CompanyModuleService.Services
         {
             var entity = model.MapTo<TaxList, DTaxList>();
             var result = _taxRespository.Update(entity);
+            //调用用户服务更新用户合计总金额
+            await CalcCustomerTotalTaxAccountAsync(model.LinkManId);
             return await Task.FromResult(result);
+        }
+
+        private async Task CalcCustomerTotalTaxAccountAsync(int uid)
+        {
+            var cutomerUserId = uid;
+            var totalAccount = await _taxRespository.CalcCustomerTaxTotalAccountAsync(cutomerUserId);
+            var customerService = ServiceLocator.GetService<ICustomerService>();
+            await customerService.BatchCalcCustomerTotalTaxAccountAsync(new List<(int, decimal)> {(cutomerUserId, totalAccount)});
         }
 
 
@@ -71,7 +85,18 @@ namespace Tax.CompanyModuleService.Services
                 list.Add(entity);
             });
             var result = _taxRespository.Update(list);
+
+            await BatchCalcCustomerTotalTaxAccountAsync(modelsLists);
+
             return await Task.FromResult(result);
+        }
+
+        private async Task BatchCalcCustomerTotalTaxAccountAsync(List<DTaxList> modelsLists)
+        {
+            var uids = modelsLists.Select(x => x.LinkManId).Distinct().ToList();
+            var userAccounts = await _taxRespository.BatchCalcCustomerTaxToatalAccountAsync(uids);
+            var customerService = ServiceLocator.GetService<ICustomerService>();
+            await customerService.BatchCalcCustomerTotalTaxAccountAsync(userAccounts);
         }
 
 
@@ -84,5 +109,52 @@ namespace Tax.CompanyModuleService.Services
             var update = _taxRespository.Update(result);
             return await Task.FromResult(update);
         }
+
+
+//        public decimal CalcCustomerTaxTotalAccountAsyncOne(int uid)
+//        {
+//            var userTaxList = _taxRespository.Find(x =>
+//                    x.LinkManId == uid && x.IsValied && x.State != TaxState.Discarded && x.State != TaxState.UnKnown)
+//                .Select(s => new ValueTuple<int, decimal>
+//                {
+//                    Item1 = s.LinkManId,
+//                    Item2 = s.TaxAccount
+//                });
+//
+//            var sumAsync = userTaxList.Sum(x => x.Item2);
+//
+//            return sumAsync;
+//        }
+//
+//        public async Task<decimal> CalcCustomerTaxTotalAccountAsync(int uid)
+//        {
+//            var userTaxList = _taxRespository.Find(x =>
+//                    x.LinkManId == uid && x.IsValied && x.State != TaxState.Discarded && x.State != TaxState.UnKnown)
+//                .Select(s => new ValueTuple<int, decimal>
+//                {
+//                    Item1 = s.LinkManId,
+//                    Item2 = s.TaxAccount
+//                });
+//
+//            var sumAsync = await userTaxList.SumAsync(x => x.Item2);
+//
+//            return sumAsync;
+//        }
+
+
+//        private async Task<List<(int, decimal)>> BatchCalcCustomerTaxTotalAccount(List<int> uids)
+//        {
+//            var userTaxList = _taxRespository.Find(x =>
+//                    x.LinkManId == uid && x.IsValied && x.State != TaxState.Discarded && x.State != TaxState.UnKnown)
+//                .Select(s => new ValueTuple<int, decimal>
+//                {
+//                    Item1 = s.LinkManId,
+//                    Item2 = s.TaxAccount
+//                });
+//
+//            var sumAsync = userTaxList.SumAsync(x => x.Item2);
+//
+//            return await userTaxList.ToListAsync();
+//        }
     }
 }
