@@ -5,6 +5,7 @@ using Microsoft.EntityFrameworkCore;
 using Surging.Core.ProxyGenerator;
 using Tax.CompanyModuleService.Domain.Respositories;
 using Tax.CompanyModuleService.Ext;
+using Tax.CompanyModuleService.Uinities;
 using Tax.ICompanyModuleService.Domain.BaseModel.DTO;
 using Tax.ICompanyModuleService.Domain.BaseModel.Entities;
 using Tax.ICompanyModuleService.Domain.IRepositories;
@@ -33,12 +34,13 @@ namespace Tax.CompanyModuleService.Services
             return await Task.FromResult(count);
         }
 
-        public async Task<IList<Customer>> GetCustomersAsync(int offSet, int take)
+        public async Task<IList<Customer>> GetCustomersAsync(int offSet, int take, string customerName = "")
         {
-            var companies = await _customerRepository.Entities.Where(w => w.IsValied)
-                .OrderByDescending(o => o.UpdateTime).Skip(offSet).Take(take)
-                .ToListAsync();
-            return companies;
+            var companies =  _customerRepository.Entities.Where(w => w.IsValied)
+                .AsNoTracking().AsEnumerable().
+                WhereIf(customerName!=string.Empty,w=>w.Name.Contains(customerName))
+                .OrderByDescending(o => o.UpdateTime).Skip(offSet).Take(take);
+            return await Task.FromResult(companies.ToList());
         }
 
         public async Task<int> AddCustomerAsync(DCustomer customer)

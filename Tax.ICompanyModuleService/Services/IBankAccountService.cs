@@ -11,7 +11,7 @@ namespace Tax.ICompanyModuleService.Services
     public interface IBankAccountService : IServiceKey
     {
         Task<int> GetCountAsync();
-        Task<List<DBankAccountItem>> GetBandAccountsAsync(int offSet, int take);
+        Task<List<DBankAccountItem>> GetBandAccountsAsync(int offSet, int take,string openAccountCompanyName="");
         Task<int> AddBankAccountAsync(DBankAccount bankAccount);
         Task<int> UpdateBankAccountAsync(DBankAccount bankAccount);
 

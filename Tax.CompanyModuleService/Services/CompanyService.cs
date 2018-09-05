@@ -38,7 +38,6 @@ namespace Tax.CompanyModuleService.Services
         {
             var companies = _repository.Entities
                 .Where(w => w.IsValied)
-                .AsNoTracking()
                 .Include(x => x.Shareholders)
                 .WhereIf(companyName != string.Empty, w => w.Name.Contains(companyName))
                 .Select(x => new {entities = x, shareholders = x.Shareholders.Where(w => w.IsValied)})

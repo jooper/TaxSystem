@@ -5,6 +5,7 @@ using Microsoft.EntityFrameworkCore;
 using Surging.Core.ProxyGenerator;
 using Tax.CompanyModuleService.Domain.Respositories;
 using Tax.CompanyModuleService.Ext;
+using Tax.CompanyModuleService.Uinities;
 using Tax.ICompanyModuleService.Domain.BaseModel.DTO;
 using Tax.ICompanyModuleService.Domain.BaseModel.Entities;
 using Tax.ICompanyModuleService.Domain.IRepositories;
@@ -27,11 +28,12 @@ namespace Tax.CompanyModuleService.Services
             return await Task.FromResult(count);
         }
 
-        public async Task<List<DBankAccountItem>> GetBandAccountsAsync(int offSet, int take)
+        public async Task<List<DBankAccountItem>> GetBandAccountsAsync(int offSet, int take, string openAccountCompanyName = "")
 
         {
-            var bankEntities = _bankAccountRespository.Entities.OrderByDescending(o => o.UpdateTime)
-                .Where(w => w.IsValied)
+            var bankEntities = _bankAccountRespository.Entities.OrderByDescending(o => o.UpdateTime).AsNoTracking()
+                .Where(w => w.IsValied).AsEnumerable()
+                .WhereIf(openAccountCompanyName!=string.Empty,w=>w.OpenBankName.Contains(openAccountCompanyName))
                 .GroupBy(g => g.CompanyId).Select(x => new DBankAccountItem
                 {
                     CompanyId = x.Key,
@@ -50,8 +52,8 @@ namespace Tax.CompanyModuleService.Services
                     }).ToList()
                 });
 
-            var resultAccountItems = await bankEntities.Skip(offSet).Take(take).ToListAsync();
-            return resultAccountItems;
+            var resultAccountItems =  bankEntities.Skip(offSet).Take(take);
+            return await  Task.FromResult(resultAccountItems.ToList());
         }
 
         public async Task<int> AddBankAccountAsync(DBankAccount bankAccount)

@@ -12,7 +12,7 @@ namespace Tax.ICompanyModuleService.Services
     {
         Task<Customer> GetCustomerByIdAsync(int id);
         Task<int> GetAllCustomerCountAsync();
-        Task<IList<Customer>> GetCustomersAsync(int offSet, int take);
+        Task<IList<Customer>> GetCustomersAsync(int offSet, int take,string customerName="");
         Task<int> AddCustomerAsync(DCustomer customer);
         Task<int> UpdateCustomerAsync(DCustomer customer);
         Task<int> DeleteCustomerAsync(int id);
