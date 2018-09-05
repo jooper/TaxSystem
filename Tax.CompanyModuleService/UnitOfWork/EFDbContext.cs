@@ -1,5 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using Tax.CompanyModuleService.Ext;
+using Tax.CompanyModuleService.Uinities;
 using Tax.ICompanyModuleService.Domain.BaseModel.Entities;
 
 namespace Tax.CompanyModuleService.UnitOfWork
@@ -10,15 +12,17 @@ namespace Tax.CompanyModuleService.UnitOfWork
 
     public class EfDbContext : DbContext, IEfDbContext
     {
-//        private static readonly string DefaultSqlConnectionString =
-//            @"Server=192.168.200.200;database=Tax;uid=sa;pwd=123456aA";
+        //        private static readonly string DefaultSqlConnectionString =
+        //            @"Server=192.168.200.200;database=Tax;uid=sa;pwd=123456aA";
 
         //        private static readonly string DefaultSqlConnectionString =
         //            @"Server=bds245005164.my3w.com;database=bds245005164_db;uid=bds245005164;pwd=ALYlyj123456";
+        //172.26.153.197      47.92.85.74
 
+        private static readonly string ServerIp = ConfigurtaionServices.Configuration["dbServerIp"];
 
         private static readonly string DefaultSqlConnectionString =
-            @"Server=47.92.85.74;database=Tax;uid=sa;pwd=Sa!@#123#@!";
+            $"Server={ServerIp};database=Tax;uid=sa;pwd=Sa!@#123#@!";
 
 
         public DbSet<Company> Companies { set; get; }
@@ -49,7 +53,6 @@ namespace Tax.CompanyModuleService.UnitOfWork
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-
             //            modelBuilder.Entity<Company>().HasMany(m => m.Shareholders).WithOne(p => p.Company)
             //                .HasForeignKey(p => p.CompanyId);
 
@@ -74,9 +77,6 @@ namespace Tax.CompanyModuleService.UnitOfWork
             modelBuilder.Entity<Company>().HasMany(x => x.Shareholders);
 
             //.WithMany(x => x.CompanyCities).HasForeignKey(x => x.CompanyId);
-
- 
-           
         }
     }
 }

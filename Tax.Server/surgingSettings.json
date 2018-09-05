@@ -56,5 +56,6 @@
     "LogLevel": {
       "Default": "${LogLevel}|Debug"
     }
-  }
+  },
+  "dbServerIp": "47.92.85.74" // "172.26.153.197"
 }

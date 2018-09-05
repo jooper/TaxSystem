@@ -33,7 +33,7 @@ namespace Tax.CompanyModuleService.Services
         {
             var bankEntities = _bankAccountRespository.Entities.OrderByDescending(o => o.UpdateTime).AsNoTracking()
                 .Where(w => w.IsValied).AsEnumerable()
-                .WhereIf(openAccountCompanyName!=string.Empty,w=>w.OpenBankName.Contains(openAccountCompanyName))
+                .WhereIf(openAccountCompanyName!=string.Empty,w=>w.CompanyName.Contains(openAccountCompanyName))
                 .GroupBy(g => g.CompanyId).Select(x => new DBankAccountItem
                 {
                     CompanyId = x.Key,
